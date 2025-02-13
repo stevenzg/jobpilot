@@ -17,9 +17,12 @@ export default function Home() {
           </div>
         </div>
         <div className="flex items-center space-x-4">
-
-          <button className="px-4 py-2">SIGN IN</button>
-          <button className="bg-black text-white px-4 py-2 rounded-md">JOIN NOW</button>
+          <a 
+            href="/login"
+            className="bg-black text-white px-6 py-2.5 rounded-full hover:bg-gray-800 transition-all text-sm font-medium"
+          >
+            Get Started
+          </a>
         </div>
       </nav>
 
