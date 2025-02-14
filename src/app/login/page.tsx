@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { authService } from "../services/auth";
 
@@ -11,6 +11,18 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [codeSent, setCodeSent] = useState(false);
   const [error, setError] = useState("");
+  const [countdown, setCountdown] = useState(0);
+
+  useEffect(() => {
+    if (countdown > 0) {
+      const timer = setTimeout(() => {
+        setCountdown(countdown - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else if (countdown === 0 && codeSent) {
+      setCodeSent(false);
+    }
+  }, [countdown]);
 
   const handleSendCode = async () => {
     try {
@@ -18,6 +30,7 @@ export default function LoginPage() {
       setError("");
       await authService.sendCode(email);
       setCodeSent(true);
+      setCountdown(60); // 60秒倒计时
     } catch (err) {
       setError("Failed to send verification code. Please try again.");
     } finally {
@@ -79,7 +92,7 @@ export default function LoginPage() {
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#00FF9D] focus:border-transparent outline-none transition-all"
               placeholder="Enter your email"
               required
-              disabled={loading || codeSent}
+              disabled={loading || countdown > 0}
             />
           </div>
 
@@ -92,10 +105,16 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={handleSendCode}
-                className="text-sm text-[#00FF9D] hover:text-[#00E090] font-medium disabled:opacity-50"
-                disabled={loading || !email || codeSent}
+                className="text-sm text-[#00FF9D] hover:text-[#00E090] font-medium disabled:opacity-50 disabled:cursor-not-allowed min-w-[100px] text-right"
+                disabled={loading || !email || countdown > 0}
               >
-                {codeSent ? "Code Sent" : loading ? "Sending..." : "Get Code"}
+                {countdown > 0 
+                  ? `Resend in ${countdown}s` 
+                  : loading 
+                    ? "Sending..." 
+                    : codeSent 
+                      ? "Resend Code"
+                      : "Get Code"}
               </button>
             </div>
             <input
@@ -107,13 +126,14 @@ export default function LoginPage() {
               placeholder="Enter verification code"
               required
               disabled={loading || !codeSent}
+              maxLength={6}
             />
           </div>
 
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-[#00FF9D] hover:bg-[#00E090] text-black font-semibold py-3 rounded-lg transition-all disabled:opacity-50"
+            className="w-full bg-[#00FF9D] hover:bg-[#00E090] text-black font-semibold py-3 rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={loading || (!codeSent && !email) || (codeSent && !code)}
           >
             {loading ? "Please wait..." : codeSent ? "Continue" : "Get Code"}
