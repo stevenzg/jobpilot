@@ -15,6 +15,7 @@ type MarketData = {
 export default function MarketAnalysisPage() {
   const router = useRouter()
   const [jobFunction, setJobFunction] = useState("")
+  const [searchMode, setSearchMode] = useState<"rush" | "casual">("casual")
   const [marketData, setMarketData] = useState<MarketData>({
     jobCount: 4991,
     medianSalary: 160000,
@@ -31,13 +32,21 @@ export default function MarketAnalysisPage() {
 
   useEffect(() => {
     const storedJobFunction = localStorage.getItem("jobFunction")
+    const storedMode = localStorage.getItem("searchMode") as "rush" | "casual"
     if (storedJobFunction) {
       setJobFunction(storedJobFunction)
+    }
+    if (storedMode) {
+      setSearchMode(storedMode)
     }
   }, [])
 
   const handleNext = () => {
-    router.push("/dashboard")
+    if (searchMode === "rush") {
+      router.push("/onboarding/resume-upload")
+    } else {
+      router.push("/dashboard")
+    }
   }
 
   return (
