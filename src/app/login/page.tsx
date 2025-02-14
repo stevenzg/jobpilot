@@ -1,11 +1,53 @@
-import { Metadata } from "next"
+"use client";
 
-export const metadata: Metadata = {
-  title: "Get Started - JobPilot",
-  description: "Enter your email to continue your job search journey",
-}
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { authService } from "../services/auth";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [codeSent, setCodeSent] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSendCode = async () => {
+    try {
+      setLoading(true);
+      setError("");
+      await authService.sendCode(email);
+      setCodeSent(true);
+    } catch (err) {
+      setError("Failed to send verification code. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!codeSent) {
+      handleSendCode();
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setError("");
+      const response = await authService.verify(email, code);
+      // Store token and user info
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("user", JSON.stringify(response.user));
+      // Redirect to dashboard
+      router.push("/dashboard");
+    } catch (err) {
+      setError("Invalid verification code. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#E0FFFF] to-white flex items-center justify-center p-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
@@ -15,8 +57,15 @@ export default function LoginPage() {
           <p className="text-gray-600">Enter your email to continue</p>
         </div>
 
+        {/* Error Message */}
+        {error && (
+          <div className="mb-4 p-3 bg-red-50 text-red-700 rounded-lg text-sm">
+            {error}
+          </div>
+        )}
+
         {/* Login Form */}
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           {/* Email Input */}
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
@@ -25,10 +74,12 @@ export default function LoginPage() {
             <input
               type="email"
               id="email"
-              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#00FF9D] focus:border-transparent outline-none transition-all"
               placeholder="Enter your email"
               required
+              disabled={loading || codeSent}
             />
           </div>
 
@@ -40,27 +91,32 @@ export default function LoginPage() {
               </label>
               <button
                 type="button"
-                className="text-sm text-[#00FF9D] hover:text-[#00E090] font-medium"
+                onClick={handleSendCode}
+                className="text-sm text-[#00FF9D] hover:text-[#00E090] font-medium disabled:opacity-50"
+                disabled={loading || !email || codeSent}
               >
-                Get Code
+                {codeSent ? "Code Sent" : loading ? "Sending..." : "Get Code"}
               </button>
             </div>
             <input
               type="text"
               id="code"
-              name="code"
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#00FF9D] focus:border-transparent outline-none transition-all"
               placeholder="Enter verification code"
               required
+              disabled={loading || !codeSent}
             />
           </div>
 
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-[#00FF9D] hover:bg-[#00E090] text-black font-semibold py-3 rounded-lg transition-all"
+            className="w-full bg-[#00FF9D] hover:bg-[#00E090] text-black font-semibold py-3 rounded-lg transition-all disabled:opacity-50"
+            disabled={loading || (!codeSent && !email) || (codeSent && !code)}
           >
-            Continue
+            {loading ? "Please wait..." : codeSent ? "Continue" : "Get Code"}
           </button>
 
           {/* Terms */}
@@ -99,5 +155,5 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
