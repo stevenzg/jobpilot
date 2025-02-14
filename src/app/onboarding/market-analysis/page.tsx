@@ -45,7 +45,7 @@ export default function MarketAnalysisPage() {
     if (searchMode === "rush") {
       router.push("/onboarding/resume-upload")
     } else {
-      router.push("/dashboard")
+      router.push("/onboarding/career-goal")
     }
   }
 
