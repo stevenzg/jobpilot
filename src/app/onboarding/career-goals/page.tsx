@@ -16,7 +16,7 @@ export default function CareerGoalsPage() {
     if (selectedGoal && selectedSubGoal) {
       localStorage.setItem("careerGoal", selectedGoal)
       localStorage.setItem("careerSubGoal", selectedSubGoal)
-      router.push("/dashboard")
+      router.push("/onboarding/resume-upload")
     }
   }
 
