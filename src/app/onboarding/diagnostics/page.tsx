@@ -55,8 +55,13 @@ export default function DiagnosticsPage() {
   }
 
   const handleNext = () => {
-    // TODO: Save preferences
-    router.push("/dashboard")
+    // Save job preferences
+    localStorage.setItem("jobFunction", jobFunction)
+    localStorage.setItem("jobTypes", JSON.stringify(jobTypes))
+    localStorage.setItem("locations", JSON.stringify(locations))
+    localStorage.setItem("workAuthorizations", JSON.stringify(workAuthorizations))
+    
+    router.push("/onboarding/market-analysis")
   }
 
   return (
