@@ -5,14 +5,17 @@ import Image from "next/image"
 import { useState } from "react"
 
 type CareerGoal = "advance" | "shift" | "lifestyle" | null
+type SubGoal = string | null
 
-export default function CareerGoalPage() {
+export default function CareerGoalsPage() {
   const router = useRouter()
   const [selectedGoal, setSelectedGoal] = useState<CareerGoal>(null)
+  const [selectedSubGoal, setSelectedSubGoal] = useState<SubGoal>(null)
 
   const handleNext = () => {
-    if (selectedGoal) {
+    if (selectedGoal && selectedSubGoal) {
       localStorage.setItem("careerGoal", selectedGoal)
+      localStorage.setItem("careerSubGoal", selectedSubGoal)
       router.push("/dashboard")
     }
   }
@@ -29,6 +32,11 @@ export default function CareerGoalPage() {
           />
         </svg>
       ),
+      subGoals: [
+        "To A Senior Role",
+        "To A Manager Role",
+        "To A Higher Compensation"
+      ]
     },
     {
       id: "shift",
@@ -41,6 +49,11 @@ export default function CareerGoalPage() {
           />
         </svg>
       ),
+      subGoals: [
+        "Transit To A New Industry",
+        "Transit To A New Role",
+        "Explore New Skill"
+      ]
     },
     {
       id: "lifestyle",
@@ -53,6 +66,11 @@ export default function CareerGoalPage() {
           />
         </svg>
       ),
+      subGoals: [
+        "Work & Life Balance",
+        "Work Security",
+        "Work Flexibility"
+      ]
     },
   ]
 
@@ -90,21 +108,52 @@ export default function CareerGoalPage() {
         {/* Career Goals */}
         <div className="grid grid-cols-3 gap-6">
           {goals.map((goal) => (
-            <div
-              key={goal.id}
-              className={`bg-white rounded-2xl p-8 shadow-lg text-center space-y-6 cursor-pointer transition-all ${
-                selectedGoal === goal.id
-                  ? "ring-2 ring-[#00FF9D]"
-                  : "hover:bg-gray-50"
-              }`}
-              onClick={() => setSelectedGoal(goal.id as CareerGoal)}
-            >
-              <div className="mx-auto w-20 h-20 flex items-center justify-center">
-                {goal.icon}
+            <div key={goal.id} className="space-y-4">
+              <div
+                className={`bg-white rounded-2xl p-8 shadow-lg text-center space-y-6 cursor-pointer transition-all ${
+                  selectedGoal === goal.id
+                    ? "ring-2 ring-[#00FF9D]"
+                    : "hover:bg-gray-50"
+                }`}
+                onClick={() => {
+                  setSelectedGoal(goal.id as CareerGoal)
+                  setSelectedSubGoal(null)
+                }}
+              >
+                <div className="mx-auto w-20 h-20 flex items-center justify-center">
+                  {goal.icon}
+                </div>
+                <div className="bg-black text-white px-4 py-2 rounded-full text-sm">
+                  {goal.title}
+                </div>
               </div>
-              <button className="bg-black text-white px-4 py-2 rounded-full text-sm">
-                {goal.title}
-              </button>
+
+              {/* Sub Goals */}
+              {selectedGoal === goal.id && (
+                <div className="bg-[#E0FFFF] rounded-2xl p-4 space-y-2">
+                  {goal.subGoals.map((subGoal) => (
+                    <div
+                      key={subGoal}
+                      className={`bg-white rounded-xl p-4 flex items-center gap-3 cursor-pointer transition-all ${
+                        selectedSubGoal === subGoal
+                          ? "ring-2 ring-[#00FF9D]"
+                          : "hover:bg-gray-50"
+                      }`}
+                      onClick={() => setSelectedSubGoal(subGoal)}
+                    >
+                      <div 
+                        className={`w-5 h-5 rounded-full border-2 flex items-center justify-center
+                          ${selectedSubGoal === subGoal ? "border-[#00FF9D]" : "border-gray-300"}`}
+                      >
+                        {selectedSubGoal === subGoal && (
+                          <div className="w-3 h-3 rounded-full bg-[#00FF9D]" />
+                        )}
+                      </div>
+                      <span className="text-sm">{subGoal}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -113,7 +162,7 @@ export default function CareerGoalPage() {
         <div className="flex justify-end mt-8">
           <button
             onClick={handleNext}
-            disabled={!selectedGoal}
+            disabled={!selectedGoal || !selectedSubGoal}
             className="bg-black text-white px-8 py-2 rounded-full hover:opacity-80 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Next
