@@ -77,6 +77,20 @@ export default function ResumeUploadPage() {
 
         {selectedOption === "resume" ? (
           <>
+            {/* Back Button */}
+            <button
+              onClick={() => setSelectedOption(null)}
+              className="mb-8 flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"
+                />
+              </svg>
+              Back
+            </button>
+
             {/* Privacy Notice */}
             <div className="bg-[#E7F7EF] text-gray-600 p-4 rounded-lg mb-8 text-sm">
               Data privacy is the top priority at JobPilot. Your resume will only be used for job matching and will never be shared with third parties. For details, please see our{" "}
@@ -178,7 +192,21 @@ export default function ResumeUploadPage() {
         )}
 
         {/* Action Button */}
-        <div className="flex justify-end mt-8">
+        <div className="flex justify-between items-center mt-8">
+          {selectedOption === "resume" && (
+            <button
+              onClick={() => setSelectedOption(null)}
+              className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"
+                />
+              </svg>
+              Back
+            </button>
+          )}
           {selectedOption === "resume" ? (
             <button
               onClick={handleUpload}
