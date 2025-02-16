@@ -101,7 +101,7 @@ export default function CareerGoalsPage() {
       <div className="max-w-4xl mx-auto mt-12">
         <div className="space-y-4 mb-12">
           <h1 className="text-xl font-medium">
-            We're almost there! What's your career goal for your next role?
+            We&apos;re almost there! What&apos;s your career goal for your next role?
           </h1>
         </div>
 

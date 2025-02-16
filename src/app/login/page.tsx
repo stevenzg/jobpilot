@@ -22,7 +22,7 @@ export default function LoginPage() {
     } else if (countdown === 0 && codeSent) {
       setCodeSent(false);
     }
-  }, [countdown]);
+  }, [countdown, codeSent]);
 
   const handleSendCode = async () => {
     try {
@@ -31,7 +31,7 @@ export default function LoginPage() {
       await authService.sendCode(email);
       setCodeSent(true);
       setCountdown(60); // 60秒倒计时
-    } catch (err) {
+    } catch {
       setError("Failed to send verification code. Please try again.");
     } finally {
       setLoading(false);
@@ -54,7 +54,7 @@ export default function LoginPage() {
       localStorage.setItem("user", JSON.stringify(response.user));
       // Redirect to dashboard
       router.push("/dashboard");
-    } catch (err) {
+    } catch {
       setError("Invalid verification code. Please try again.");
     } finally {
       setLoading(false);

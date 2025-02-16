@@ -13,6 +13,8 @@ export default function ResumeUploadPage() {
   const [file, setFile] = useState<File | null>(null)
   const [isUploading, setIsUploading] = useState(false)
 
+  const isOptionSelected = (option: "linkedin" | "resume") => selectedOption === option
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0]
     if (selectedFile) {
@@ -146,7 +148,7 @@ export default function ResumeUploadPage() {
             {/* LinkedIn Option */}
             <div 
               className={`bg-white rounded-2xl p-8 shadow-lg text-center space-y-6 cursor-pointer transition-all ${
-                selectedOption === "linkedin" ? "ring-2 ring-[#00FF9D]" : "hover:bg-gray-50"
+                isOptionSelected("linkedin") ? "ring-2 ring-[#00FF9D]" : "hover:bg-gray-50"
               }`}
               onClick={() => setSelectedOption("linkedin")}
             >
@@ -159,7 +161,7 @@ export default function ResumeUploadPage() {
                 </svg>
               </div>
               <div className="text-lg font-medium">Enter Linkedin URL</div>
-              {selectedOption === "linkedin" && (
+              {isOptionSelected("linkedin") && (
                 <input
                   type="text"
                   value={linkedinUrl}
@@ -174,7 +176,7 @@ export default function ResumeUploadPage() {
             {/* Resume Option */}
             <div 
               className={`bg-white rounded-2xl p-8 shadow-lg text-center space-y-6 cursor-pointer transition-all ${
-                selectedOption === "resume" ? "ring-2 ring-[#00FF9D]" : "hover:bg-gray-50"
+                isOptionSelected("resume") ? "ring-2 ring-[#00FF9D]" : "hover:bg-gray-50"
               }`}
               onClick={() => setSelectedOption("resume")}
             >

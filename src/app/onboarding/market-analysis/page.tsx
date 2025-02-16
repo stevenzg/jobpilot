@@ -16,7 +16,7 @@ export default function MarketAnalysisPage() {
   const router = useRouter()
   const [jobFunction, setJobFunction] = useState("")
   const [searchMode, setSearchMode] = useState<"rush" | "casual">("casual")
-  const [marketData, setMarketData] = useState<MarketData>({
+  const [marketData] = useState<MarketData>({
     jobCount: 4991,
     medianSalary: 160000,
     recentJobs: 1214,
