@@ -51,16 +51,16 @@ export default function Home() {
         {/* Hero Section */}
         <div className="flex flex-col lg:flex-row items-center justify-between">
           <div className="text-left space-y-6 max-w-xl lg:pr-8">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent">
               No More Solo<br />
               Job Hunting
             </h1>
-            <h2 className="text-2xl sm:text-3xl font-semibold bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent">
-              DO IT WITH AI COPILOT
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent">
+              DO IT WITH AI<br />COPILOT
             </h2>
-            <p className="text-base sm:text-lg text-gray-600">
-              Our AI makes landing job interviews dramatically easier and faster! Get matched jobs, tailored
-              resumes, and recommended insider connections in less than 1 min!
+            <p className="text-base text-gray-600">
+              Land more interviews with AI-powered job matches, tailored
+              resumes, and insider connections in less than 1 min!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <button className="bg-black hover:bg-gray-800 text-white font-semibold px-8 py-4 rounded-full text-base transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
