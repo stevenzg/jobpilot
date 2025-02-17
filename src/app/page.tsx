@@ -18,9 +18,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#E0FFFF] via-white to-[#E0FFFF] scroll-smooth">
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100' : 'bg-transparent'
-      }`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100' : 'bg-transparent'
+        }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
           <div className="flex items-center">
             <span className="font-bold text-lg sm:text-xl bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent">JobPilot</span>
@@ -34,7 +33,7 @@ export default function Home() {
             </div>
           </div>
           <div className="flex items-center">
-            <a 
+            <a
               href="/login"
               className="bg-black text-white px-6 py-2.5 rounded-full hover:bg-gray-800 transition-all text-sm font-medium shadow-md hover:shadow-lg"
             >
@@ -47,52 +46,30 @@ export default function Home() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 pt-28 sm:pt-32">
         {/* Hero Section */}
-        <div className="flex flex-col lg:flex-row items-center justify-between">
-          <div className="text-left space-y-6 max-w-xl lg:pr-8">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent">
-              No More Solo<br />
-              Job Hunting
-            </h1>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent">
-              DO IT WITH AI<br />COPILOT
-            </h2>
-            <p className="text-base text-gray-600">
-              Land more interviews with AI-powered job matches, tailored
-              resumes, and insider connections in less than 1 min!
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <button className="bg-black hover:bg-gray-800 text-white font-semibold px-8 py-4 rounded-full text-base transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                Try JobPilot for Free
-              </button>
-              <button className="bg-white hover:bg-gray-50 text-black font-semibold px-8 py-4 rounded-full text-base transition-all shadow-lg hover:shadow-xl border border-gray-200 transform hover:-translate-y-0.5">
-                Watch Demo
-              </button>
-            </div>
-            <div className="flex items-center gap-4 pt-6">
-              <div className="flex -space-x-2">
-                <div className="w-10 h-10 rounded-full bg-gray-200 border-2 border-white"></div>
-                <div className="w-10 h-10 rounded-full bg-gray-300 border-2 border-white"></div>
-                <div className="w-10 h-10 rounded-full bg-gray-400 border-2 border-white"></div>
-              </div>
-              <p className="text-sm text-gray-600">
-                Join <span className="font-semibold">1000+</span> job seekers who found their dream jobs
-              </p>
-            </div>
+        <div className="text-center max-w-4xl mx-auto">
+          <h1 className="text-2xl sm:text-3xl md:text-6xl leading-tight bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent mb-4">
+            No More Solo Job Hunting
+          </h1>
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight leading-tight bg-clip-text mb-8">
+            DO IT WITH AI COPILOT
+          </h2>
+          <p className="text-base text-gray-600">
+            Our AI makes landing job interviews dramatically easier and faster! - get matched jobs, tailored resume, and recommended insider connections in less than 1 min!
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
+            <button className="bg-black hover:bg-gray-800 text-white font-semibold px-8 py-4 rounded-full text-base transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+              Try JobPilot for Free
+            </button>
           </div>
-          <div className="lg:w-1/2 mt-12 lg:mt-0">
-            <div className="relative w-full aspect-[4/3] bg-gradient-to-br from-[#00FF9D] to-[#00E090] rounded-2xl shadow-2xl overflow-hidden">
-              <div className="absolute inset-0 bg-white/90 backdrop-blur-sm">
-                <div className="p-8">
-                  <div className="animate-pulse space-y-4">
-                    <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-                    <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-                    <div className="h-32 bg-gray-200 rounded"></div>
-                    <div className="h-4 bg-gray-200 rounded w-5/6"></div>
-                    <div className="h-4 bg-gray-200 rounded w-2/3"></div>
-                  </div>
-                </div>
-              </div>
+          <div className="flex items-center justify-center gap-4 pt-6">
+            <div className="flex -space-x-2">
+              <div className="w-10 h-10 rounded-full bg-gray-200 border-2 border-white"></div>
+              <div className="w-10 h-10 rounded-full bg-gray-300 border-2 border-white"></div>
+              <div className="w-10 h-10 rounded-full bg-gray-400 border-2 border-white"></div>
             </div>
+            <p className="text-sm text-gray-600">
+              Join <span className="font-semibold">1000+</span> job seekers who found their dream jobs
+            </p>
           </div>
         </div>
 
@@ -141,12 +118,12 @@ export default function Home() {
               <div className="flex space-x-4">
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z"/>
+                    <path d="M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z" />
                   </svg>
                 </a>
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.68 1.68 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.68 1.68 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
                   </svg>
                 </a>
               </div>
