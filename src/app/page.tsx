@@ -1,33 +1,53 @@
+"use client"
+
+import { useRouter } from "next/navigation"
 import Image from "next/image"
+import { useState, useEffect } from "react"
 
 export default function Home() {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY
+      setIsScrolled(scrollPosition > 50)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#E0FFFF] via-white to-[#E0FFFF]">
+    <div className="min-h-screen bg-gradient-to-b from-[#E0FFFF] via-white to-[#E0FFFF] scroll-smooth">
       {/* Navigation */}
-      <nav className="flex justify-between items-center px-4 sm:px-6 py-4 max-w-7xl mx-auto">
-        <div className="flex items-center">
-          <span className="font-bold text-lg sm:text-xl bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent">JobPilot</span>
-          <div className="hidden md:flex space-x-6 ml-10">
-            <a href="#" className="text-gray-600 hover:text-black transition-colors">Features</a>
-            <a href="#" className="text-gray-600 hover:text-black transition-colors">Tools</a>
-            <a href="#" className="text-gray-600 hover:text-black transition-colors">Resume AI</a>
-            <a href="#" className="text-gray-600 hover:text-black transition-colors">For Employer</a>
-            <a href="#" className="text-gray-600 hover:text-black transition-colors">About Us</a>
-            <a href="#" className="text-gray-600 hover:text-black transition-colors">Blog</a>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100' : 'bg-transparent'
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+          <div className="flex items-center">
+            <span className="font-bold text-lg sm:text-xl bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent">JobPilot</span>
+            <div className="hidden md:flex space-x-6 ml-10">
+              <a href="#features" className="text-gray-600 hover:text-black transition-colors">Features</a>
+              <a href="#tools" className="text-gray-600 hover:text-black transition-colors">Tools</a>
+              <a href="#resume" className="text-gray-600 hover:text-black transition-colors">Resume AI</a>
+              <a href="#employer" className="text-gray-600 hover:text-black transition-colors">For Employer</a>
+              <a href="#about" className="text-gray-600 hover:text-black transition-colors">About Us</a>
+              <a href="#blog" className="text-gray-600 hover:text-black transition-colors">Blog</a>
+            </div>
           </div>
-        </div>
-        <div className="flex items-center">
-          <a 
-            href="/login"
-            className="bg-black text-white px-6 py-2.5 rounded-full hover:bg-gray-800 transition-all text-sm font-medium shadow-md hover:shadow-lg"
-          >
-            Get Started
-          </a>
+          <div className="flex items-center">
+            <a 
+              href="/login"
+              className="bg-black text-white px-6 py-2.5 rounded-full hover:bg-gray-800 transition-all text-sm font-medium shadow-md hover:shadow-lg"
+            >
+              Get Started
+            </a>
+          </div>
         </div>
       </nav>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 py-12 sm:py-20">
+      <main className="max-w-7xl mx-auto px-4 pt-28 sm:pt-32">
         {/* Hero Section */}
         <div className="flex flex-col lg:flex-row items-center justify-between">
           <div className="text-left space-y-6 max-w-xl lg:pr-8">
@@ -79,7 +99,7 @@ export default function Home() {
         </div>
 
         {/* Features Section */}
-        <div className="mt-32 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div id="features" className="mt-32 grid grid-cols-1 md:grid-cols-3 gap-8 scroll-mt-24">
           <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
             <div className="w-12 h-12 bg-[#00FF9D] rounded-lg mb-6 flex items-center justify-center">
               <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -108,27 +128,26 @@ export default function Home() {
             <p className="text-gray-600">Discover and connect with insider contacts at your target companies.</p>
           </div>
         </div>
-      </main>
 
-      {/* Footer */}
-      <footer className="bg-black text-white mt-32 py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-            {/* Company Info */}
-            <div className="space-y-6">
-              <span className="font-bold text-xl bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent">JobPilot</span>
-              <p className="text-gray-400 text-sm">
-                Your AI-powered career co-pilot. We help you land your dream job faster and smarter.
-              </p>
-              <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z"/>
-                  </svg>
-                </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.68 1.68 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+        {/* Footer */}
+        <footer className="bg-black text-white mt-32 py-16">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+              {/* Company Info */}
+              <div className="space-y-6">
+                <span className="font-bold text-xl bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent">JobPilot</span>
+                <p className="text-gray-400 text-sm">
+                  Your AI-powered career co-pilot. We help you land your dream job faster and smarter.
+                </p>
+                <div className="flex space-x-4">
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z"/>
+                    </svg>
+                  </a>
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.68 1.68 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
                   </svg>
                 </a>
               </div>
@@ -181,6 +200,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
-    </div>
+    </main>
+  </div>
   )
 }
