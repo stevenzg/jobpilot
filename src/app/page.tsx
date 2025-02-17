@@ -18,11 +18,12 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#E0FFFF] via-white to-[#E0FFFF] scroll-smooth">
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100' : 'bg-transparent'
-        }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100' : 'bg-transparent'
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
           <div className="flex items-center">
-            <span className="font-bold text-lg sm:text-xl bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent">JobPilot</span>
+            <span className="font-bold text-xl sm:text-2xl bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent">JobPilot</span>
             <div className="hidden md:flex space-x-6 ml-10">
               <a href="#features" className="text-gray-600 hover:text-black transition-colors">Features</a>
               <a href="#tools" className="text-gray-600 hover:text-black transition-colors">Tools</a>
@@ -35,7 +36,7 @@ export default function Home() {
           <div className="flex items-center">
             <a
               href="/login"
-              className="bg-black text-white px-6 py-2.5 rounded-full hover:bg-gray-800 transition-all text-sm font-medium shadow-md hover:shadow-lg"
+              className="bg-black text-white px-5 sm:px-6 py-2 sm:py-2.5 rounded-full hover:bg-gray-800 transition-all text-sm font-medium shadow-md hover:shadow-lg"
             >
               Get Started
             </a>
@@ -44,30 +45,30 @@ export default function Home() {
       </nav>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 pt-28 sm:pt-32">
+      <main className="max-w-7xl mx-auto px-4 pt-20 sm:pt-28">
         {/* Hero Section */}
-        <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-2xl sm:text-3xl md:text-6xl leading-tight bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent mb-4">
+        <div className="text-center max-w-[90%] sm:max-w-4xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl font-bold leading-tight bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent mb-3 sm:mb-4">
             No More Solo Job Hunting
           </h1>
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight leading-tight bg-clip-text mb-8">
-            DO IT WITH AI COPILOT
+          <h2 className="text-[2.5rem] sm:text-5xl md:text-7xl font-black tracking-tight leading-none bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent mb-6 sm:mb-8">
+            DO IT WITH AI<br className="sm:hidden" /> COPILOT
           </h2>
-          <p className="text-base text-gray-600">
-            Our AI makes landing job interviews dramatically easier and faster! - get matched jobs, tailored resume, and recommended insider connections in less than 1 min!
+          <p className="text-base sm:text-lg text-gray-600 max-w-[85%] mx-auto mb-8 sm:mb-10">
+            Our AI makes landing job interviews dramatically easier and faster! Get matched jobs, tailored resume, and insider connections in less than 1 min!
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-            <button className="bg-black hover:bg-gray-800 text-white font-semibold px-8 py-4 rounded-full text-base transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+          <div className="flex flex-col gap-3 sm:gap-4 mb-8 sm:mb-10">
+            <button className="bg-black hover:bg-gray-800 text-white font-semibold px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-base transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 mx-auto w-[90%] sm:w-auto">
               Try JobPilot for Free
             </button>
           </div>
-          <div className="flex items-center justify-center gap-4 pt-6">
+          <div className="flex items-center justify-center gap-3 sm:gap-4">
             <div className="flex -space-x-2">
-              <div className="w-10 h-10 rounded-full bg-gray-200 border-2 border-white"></div>
-              <div className="w-10 h-10 rounded-full bg-gray-300 border-2 border-white"></div>
-              <div className="w-10 h-10 rounded-full bg-gray-400 border-2 border-white"></div>
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-200 border-2 border-white"></div>
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-300 border-2 border-white"></div>
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-400 border-2 border-white"></div>
             </div>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm sm:text-base text-gray-600">
               Join <span className="font-semibold">1000+</span> job seekers who found their dream jobs
             </p>
           </div>
