@@ -137,7 +137,7 @@ export default function Home() {
 
         {/* Features Section */}
         <div id="features" className="mt-32 bg-[#f1f3f4] rounded-tr-3xl rounded-br-3xl rounded-bl-3xl mb-10">
-          <div className="max-w-7xl mx-auto px-20 py-16">
+          <div className="max-w-7xl mx-auto px-6 md:px-20 py-16">
             <h2 className="text-3xl font-bold mb-16">AI FEATURES</h2>
 
             {features.map((feature, index) => (
