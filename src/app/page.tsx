@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Menu } from "lucide-react"
+import Image from "next/image"
 import {
   Drawer,
   DrawerClose,
@@ -100,7 +101,7 @@ export default function Home() {
                   </button>
                 </DrawerTrigger>
               ) : null}
-              <DrawerContent side="left" className="w-[300px] h-screen p-4">
+              <DrawerContent className="w-[300px] h-screen p-4">
                 <div className="space-y-6">
                   <div className="flex items-center justify-between mb-8">
                     <DrawerTitle className="font-bold text-xl bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent">
@@ -192,7 +193,15 @@ export default function Home() {
                   } ${index !== features.length - 1 ? 'border-b border-gray-200' : ''}`}
               >
                 <h3 className="text-2xl md:text-5xl leading-normal text-black">
-                  <img src={feature.icon} alt="" className="inline-block align-middle w-6 h-6 mr-2" />
+                  <div className="inline-block align-middle mr-2 relative w-6 h-6">
+                    <Image
+                      src={feature.icon}
+                      alt=""
+                      fill
+                      className="object-contain"
+                      sizes="24px"
+                    />
+                  </div>
                   <span className="inline align-middle font-bold">{feature.title}</span>
                   <span className="inline align-middle text-gray-600 mx-2">/</span>
                   <span className="inline align-middle text-gray-600">{feature.description}</span>
@@ -206,7 +215,16 @@ export default function Home() {
                       ))}
                     </ul>
                     <div className="block lg:hidden mb-8">
-                      <img src={feature.image} alt={feature.imageAlt} className="w-full" />
+                      <div className="relative w-full aspect-video">
+                        <Image
+                          src={feature.image}
+                          alt={feature.imageAlt || ""}
+                          fill
+                          className="object-cover rounded-lg"
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                          priority={feature.id === 1}
+                        />
+                      </div>
                     </div>
                     <div className="lg:mt-auto flex lg:block">
                       <button className="bg-black text-white px-6 py-2.5 rounded-full inline-flex items-center space-x-2 hover:bg-gray-800 transition-all w-fit mx-auto lg:mx-0">
@@ -216,7 +234,16 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="flex-1 hidden lg:flex items-end">
-                    <img src={feature.image} alt={feature.imageAlt} className="w-full" />
+                    <div className="relative w-full aspect-video">
+                      <Image
+                        src={feature.image}
+                        alt={feature.imageAlt || ""}
+                        fill
+                        className="object-cover rounded-lg"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        priority={feature.id === 1}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
