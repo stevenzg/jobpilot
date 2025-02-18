@@ -88,14 +88,15 @@ export default function Home() {
               </h3>
 
               <div className="flex flex-col lg:flex-row gap-12">
-                <div className="flex-1">
+                <div className="flex-1 flex flex-col">
                   <ul className="space-y-4 text-gray-600 text-lg">
                     <li>• Apply only to Jobs you are qualified for</li>
                     <li>• Discover matched jobs based on your skills, not only titles</li>
                     <li>• Say goodbye to fake jobs</li>
                     <li>• Apply early with our custom job alerts</li>
                   </ul>
-                  <button className="mt-8 bg-black text-white px-6 py-2.5 rounded-full inline-flex items-center space-x-2 hover:bg-gray-800 transition-all">
+                  <div className="flex-grow"></div>
+                  <button className="bg-black text-white px-6 py-2.5 rounded-full inline-flex items-center space-x-2 hover:bg-gray-800 transition-all w-fit">
                     <span>Start Matching</span>
                     <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
                   </button>
@@ -116,13 +117,14 @@ export default function Home() {
               </h3>
 
               <div className="flex flex-col lg:flex-row gap-12">
-                <div className="flex-1">
+                <div className="flex-1 flex flex-col">
                   <ul className="space-y-4 text-gray-600 text-lg">
                     <li>• Get a professional quality resume in minutes, not hours</li>
                     <li>• Keep tailoring your resume with AI and catch HR's eyes in 6 seconds</li>
                     <li>• Rest easy knowing your resume will be ATS compatible</li>
                   </ul>
-                  <button className="mt-8 bg-black text-white px-6 py-2.5 rounded-full inline-flex items-center space-x-2 hover:bg-gray-800 transition-all">
+                  <div className="flex-grow"></div>
+                  <button className="bg-black text-white px-6 py-2.5 rounded-full inline-flex items-center space-x-2 hover:bg-gray-800 transition-all w-fit">
                     <span>Improve My Resume</span>
                     <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
                   </button>
@@ -143,14 +145,15 @@ export default function Home() {
               </h3>
 
               <div className="flex flex-col lg:flex-row gap-12">
-                <div className="flex-1">
+                <div className="flex-1 flex flex-col">
                   <ul className="space-y-4 text-gray-600 text-lg">
                     <li>• Increase your chances of landing an interview by 4X with insider referrals</li>
                     <li>• Easily discover alumni and past colleagues within your target company</li>
                     <li>• Gain access to key connections, such as hiring managers and direct reports</li>
                     <li>• Easily personalize your cold outreach message with our custom templates</li>
                   </ul>
-                  <button className="mt-8 bg-black text-white px-6 py-2.5 rounded-full inline-flex items-center space-x-2 hover:bg-gray-800 transition-all">
+                  <div className="flex-grow"></div>
+                  <button className="bg-black text-white px-6 py-2.5 rounded-full inline-flex items-center space-x-2 hover:bg-gray-800 transition-all w-fit">
                     <span>Get Connected</span>
                     <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
                   </button>
@@ -171,14 +174,15 @@ export default function Home() {
               </h3>
 
               <div className="flex flex-col lg:flex-row gap-12">
-                <div className="flex-1">
+                <div className="flex-1 flex flex-col">
                   <ul className="space-y-4 text-gray-600 text-lg">
                     <li>• Focus your efforts with a more tailored list of jobs</li>
                     <li>• Wow in your interviews with specific company insights</li>
                     <li>• Understand why you are a good fit for a role</li>
                     <li>• Stuck in your job search or career? Get personalized guidance and coaching</li>
                   </ul>
-                  <button className="mt-8 bg-black text-white px-6 py-2.5 rounded-full inline-flex items-center space-x-2 hover:bg-gray-800 transition-all">
+                  <div className="flex-grow"></div>
+                  <button className="bg-black text-white px-6 py-2.5 rounded-full inline-flex items-center space-x-2 hover:bg-gray-800 transition-all w-fit">
                     <span>Ask Orion</span>
                     <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
                   </button>
