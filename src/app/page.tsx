@@ -141,13 +141,12 @@ export default function Home() {
             <h2 className="text-3xl font-bold mb-16">AI FEATURES</h2>
 
             {features.map((feature, index) => (
-              <div 
+              <div
                 key={feature.id}
-                className={`space-y-8 ${
-                  index === features.length - 1 ? 'pt-16' : index === 0 ? 'pb-16' : 'py-16'
-                } ${index !== features.length - 1 ? 'border-b border-gray-200' : ''}`}
+                className={`space-y-8 ${index === features.length - 1 ? 'pt-16' : index === 0 ? 'pb-16' : 'py-16'
+                  } ${index !== features.length - 1 ? 'border-b border-gray-200' : ''}`}
               >
-                <h3 className="text-2xl leading-normal">
+                <h3 className="text-2xl md:text-5xl leading-normal">
                   <img src={feature.icon} alt="" className="inline-block align-middle w-6 h-6 mr-2" />
                   <span className="inline align-middle font-bold">{feature.title}</span>
                   <span className="inline align-middle text-gray-600 mx-2">/</span>
