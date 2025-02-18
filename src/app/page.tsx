@@ -185,12 +185,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 py-16">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             {/* Company Info */}
-            <div className="space-y-6">
+            <div className="space-y-6 text-center md:text-left">
               <span className="font-bold text-xl bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent">JobPilot</span>
               <p className="text-gray-400 text-sm">
                 Your AI-powered career co-pilot. We help you land your dream job faster and smarter.
               </p>
-              <div className="flex space-x-4">
+              <div className="flex justify-center md:justify-start space-x-4">
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z" />
@@ -205,7 +205,7 @@ export default function Home() {
             </div>
 
             {/* Product */}
-            <div>
+            <div className="text-center md:text-left">
               <h3 className="font-semibold text-lg mb-6 text-white">Product</h3>
               <ul className="space-y-4">
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Features</a></li>
@@ -217,7 +217,7 @@ export default function Home() {
             </div>
 
             {/* Company */}
-            <div>
+            <div className="text-center md:text-left">
               <h3 className="font-semibold text-lg mb-6 text-white">Company</h3>
               <ul className="space-y-4">
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About Us</a></li>
@@ -229,7 +229,7 @@ export default function Home() {
             </div>
 
             {/* Legal */}
-            <div>
+            <div className="text-center md:text-left">
               <h3 className="font-semibold text-lg mb-6 text-white">Legal</h3>
               <ul className="space-y-4">
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
@@ -242,8 +242,8 @@ export default function Home() {
 
           {/* Bottom Bar */}
           <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm"> 2025 JobPilot. All rights reserved.</p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
+            <p className="text-gray-400 text-sm text-center md:text-left"> 2025 JobPilot. All rights reserved.</p>
+            <div className="flex justify-center space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Privacy</a>
               <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Terms</a>
               <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Sitemap</a>
