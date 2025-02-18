@@ -74,8 +74,8 @@ export default function Home() {
         </div>
 
         {/* Features Section */}
-        <div id="features" className="mt-32 bg-[#F8F9FC] rounded-tr-3xl rounded-br-3xl rounded-bl-3xl mb-10">
-          <div className="max-w-7xl mx-auto px-4 py-16">
+        <div id="features" className="mt-32 bg-[#f1f3f4] rounded-tr-3xl rounded-br-3xl rounded-bl-3xl mb-10">
+          <div className="max-w-7xl mx-auto px-20 py-16">
             <h2 className="text-3xl font-bold mb-16">AI FEATURES</h2>
 
             {/* AI Job Match */}
@@ -83,7 +83,7 @@ export default function Home() {
               <div className="flex-1 space-y-6">
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
-                    <img src="/features/f1-icon.png" alt="" className="w-6 h-6" />
+                    <img src="/features/i1.svg" alt="" className="w-6 h-6" />
                     <span className="text-2xl font-bold">AI Job Match</span>
                     <span className="text-xl text-gray-600">/</span>
                     <span className="text-xl text-gray-600">Job searching is already hard!</span>
@@ -113,7 +113,7 @@ export default function Home() {
               <div className="flex-1 space-y-6">
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
-                    <img src="/features/f2-icon.png" alt="" className="w-6 h-6" />
+                    <img src="/features/i2.svg" alt="" className="w-6 h-6" />
                     <span className="text-2xl font-bold">Resume AI</span>
                     <span className="text-xl text-gray-600">/</span>
                     <span className="text-xl text-gray-600">Stand out from the crowd with a top notch resume</span>
@@ -139,7 +139,7 @@ export default function Home() {
               <div className="flex-1 space-y-6">
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
-                    <img src="/features/f3-icon.png" alt="" className="w-6 h-6" />
+                    <img src="/features/i3.svg" alt="" className="w-6 h-6" />
                     <span className="text-2xl font-bold">Insider connections</span>
                     <span className="text-xl text-gray-600">/</span>
                     <span className="text-xl text-gray-600">Network like a pro with our recommended insider connections</span>
@@ -169,7 +169,7 @@ export default function Home() {
               <div className="flex-1 space-y-6">
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
-                    <img src="/features/f4-icon.png" alt="" className="w-6 h-6" />
+                    <img src="/features/i4.svg" alt="" className="w-6 h-6" />
                     <span className="text-2xl font-bold">Orion, your AI Copilot</span>
                     <span className="text-xl text-gray-600">/</span>
                     <span className="text-xl text-gray-600">Job searching can be lonely</span>
