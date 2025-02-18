@@ -79,109 +79,113 @@ export default function Home() {
             <h2 className="text-3xl font-bold mb-16">AI FEATURES</h2>
 
             {/* AI Job Match */}
-            <div className="flex flex-col lg:flex-row gap-12 pb-16 border-b border-gray-200">
-              <div className="flex-1 space-y-6">
-                <div>
-                  <h3 className="text-2xl leading-normal">
-                    <img src="/features/i1.svg" alt="" className="inline-block align-middle w-6 h-6 mr-2" />
-                    <span className="inline align-middle font-bold">AI Job Match</span>
-                    <span className="inline align-middle text-gray-600 mx-2">/</span>
-                    <span className="inline align-middle text-gray-600">Job searching is already hard! Increase your odds with AI matched Jobs</span>
-                  </h3>
+            <div className="space-y-8 pb-16 border-b border-gray-200">
+              <h3 className="text-2xl leading-normal">
+                <img src="/features/i1.svg" alt="" className="inline-block align-middle w-6 h-6 mr-2" />
+                <span className="inline align-middle font-bold">AI Job Match</span>
+                <span className="inline align-middle text-gray-600 mx-2">/</span>
+                <span className="inline align-middle text-gray-600">Job searching is already hard! Increase your odds with AI matched Jobs</span>
+              </h3>
+
+              <div className="flex flex-col lg:flex-row gap-12">
+                <div className="flex-1">
+                  <ul className="space-y-4 text-gray-600 text-lg">
+                    <li>• Apply only to Jobs you are qualified for</li>
+                    <li>• Discover matched jobs based on your skills, not only titles</li>
+                    <li>• Say goodbye to fake jobs</li>
+                    <li>• Apply early with our custom job alerts</li>
+                  </ul>
+                  <button className="mt-8 bg-black text-white px-6 py-2.5 rounded-full inline-flex items-center space-x-2 hover:bg-gray-800 transition-all">
+                    <span>Start Matching</span>
+                    <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                  </button>
                 </div>
-                <ul className="space-y-4 text-gray-600 text-lg">
-                  <li>• Apply only to Jobs you are qualified for</li>
-                  <li>• Discover matched jobs based on your skills, not only titles</li>
-                  <li>• Say goodbye to fake jobs</li>
-                  <li>• Apply early with our custom job alerts</li>
-                </ul>
-                <button className="mt-8 bg-black text-white px-8 py-3 rounded-full inline-flex items-center gap-3 hover:bg-gray-800 transition-all text-base">
-                  <span>Start Matching</span>
-                  <span className="w-1 h-1 bg-white rounded-full"></span>
-                </button>
-              </div>
-              <div className="flex-1">
-                <img src="/features/f1.png" alt="AI Job Match" className="w-full" />
+                <div className="flex-1">
+                  <img src="/features/f1.png" alt="AI Job Match" className="w-full" />
+                </div>
               </div>
             </div>
 
             {/* Resume AI */}
-            <div className="flex flex-col lg:flex-row gap-12 py-16 border-b border-gray-200">
-              <div className="flex-1 space-y-6">
-                <div>
-                  <h3 className="text-2xl leading-normal">
-                    <img src="/features/i2.svg" alt="" className="inline-block align-middle w-6 h-6 mr-2" />
-                    <span className="inline align-middle font-bold">Resume AI</span>
-                    <span className="inline align-middle text-gray-600 mx-2">/</span>
-                    <span className="inline align-middle text-gray-600">Stand out from the crowd with a top notch resume</span>
-                  </h3>
+            <div className="space-y-8 py-16 border-b border-gray-200">
+              <h3 className="text-2xl leading-normal">
+                <img src="/features/i2.svg" alt="" className="inline-block align-middle w-6 h-6 mr-2" />
+                <span className="inline align-middle font-bold">Resume AI</span>
+                <span className="inline align-middle text-gray-600 mx-2">/</span>
+                <span className="inline align-middle text-gray-600">Stand out from the crowd with a top notch resume</span>
+              </h3>
+
+              <div className="flex flex-col lg:flex-row gap-12">
+                <div className="flex-1">
+                  <ul className="space-y-4 text-gray-600 text-lg">
+                    <li>• Get a professional quality resume in minutes, not hours</li>
+                    <li>• Keep tailoring your resume with AI and catch HR's eyes in 6 seconds</li>
+                    <li>• Rest easy knowing your resume will be ATS compatible</li>
+                  </ul>
+                  <button className="mt-8 bg-black text-white px-6 py-2.5 rounded-full inline-flex items-center space-x-2 hover:bg-gray-800 transition-all">
+                    <span>Improve My Resume</span>
+                    <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                  </button>
                 </div>
-                <ul className="space-y-4 text-gray-600 text-lg">
-                  <li>• Get a professional quality resume in minutes, not hours</li>
-                  <li>• Keep tailoring your resume with AI and catch HR's eyes in 6 seconds</li>
-                  <li>• Rest easy knowing your resume will be ATS compatible</li>
-                </ul>
-                <button className="mt-8 bg-black text-white px-8 py-3 rounded-full inline-flex items-center gap-3 hover:bg-gray-800 transition-all text-base">
-                  <span>Improve My Resume</span>
-                  <span className="w-1 h-1 bg-white rounded-full"></span>
-                </button>
-              </div>
-              <div className="flex-1">
-                <img src="/features/f2.png" alt="Resume AI" className="w-full" />
+                <div className="flex-1">
+                  <img src="/features/f2.png" alt="Resume AI" className="w-full" />
+                </div>
               </div>
             </div>
 
             {/* Insider Connections */}
-            <div className="flex flex-col lg:flex-row gap-12 py-16 border-b border-gray-200">
-              <div className="flex-1 space-y-6">
-                <div>
-                  <h3 className="text-2xl leading-normal">
-                    <img src="/features/i3.svg" alt="" className="inline-block align-middle w-6 h-6 mr-2" />
-                    <span className="inline align-middle font-bold">Insider connections</span>
-                    <span className="inline align-middle text-gray-600 mx-2">/</span>
-                    <span className="inline align-middle text-gray-600">Network like a pro with our recommended insider connections. Connect, get referrals, and land interviews!</span>
-                  </h3>
+            <div className="space-y-8 py-16 border-b border-gray-200">
+              <h3 className="text-2xl leading-normal">
+                <img src="/features/i3.svg" alt="" className="inline-block align-middle w-6 h-6 mr-2" />
+                <span className="inline align-middle font-bold">Insider connections</span>
+                <span className="inline align-middle text-gray-600 mx-2">/</span>
+                <span className="inline align-middle text-gray-600">Network like a pro with our recommended insider connections. Connect, get referrals, and land interviews!</span>
+              </h3>
+
+              <div className="flex flex-col lg:flex-row gap-12">
+                <div className="flex-1">
+                  <ul className="space-y-4 text-gray-600 text-lg">
+                    <li>• Increase your chances of landing an interview by 4X with insider referrals</li>
+                    <li>• Easily discover alumni and past colleagues within your target company</li>
+                    <li>• Gain access to key connections, such as hiring managers and direct reports</li>
+                    <li>• Easily personalize your cold outreach message with our custom templates</li>
+                  </ul>
+                  <button className="mt-8 bg-black text-white px-6 py-2.5 rounded-full inline-flex items-center space-x-2 hover:bg-gray-800 transition-all">
+                    <span>Get Connected</span>
+                    <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                  </button>
                 </div>
-                <ul className="space-y-4 text-gray-600 text-lg">
-                  <li>• Increase your chances of landing an interview by 4X with insider referrals</li>
-                  <li>• Easily discover alumni and past colleagues within your target company</li>
-                  <li>• Gain access to key connections, such as hiring managers and direct reports</li>
-                  <li>• Easily personalize your cold outreach message with our custom templates</li>
-                </ul>
-                <button className="mt-8 bg-black text-white px-8 py-3 rounded-full inline-flex items-center gap-3 hover:bg-gray-800 transition-all text-base">
-                  <span>Get Connected</span>
-                  <span className="w-1 h-1 bg-white rounded-full"></span>
-                </button>
-              </div>
-              <div className="flex-1">
-                <img src="/features/f3.png" alt="Insider Connections" className="w-full" />
+                <div className="flex-1">
+                  <img src="/features/f3.png" alt="Insider Connections" className="w-full" />
+                </div>
               </div>
             </div>
 
             {/* Orion AI Copilot */}
-            <div className="flex flex-col lg:flex-row gap-12 pt-16">
-              <div className="flex-1 space-y-6">
-                <div>
-                  <h3 className="text-2xl leading-normal">
-                    <img src="/features/i4.svg" alt="" className="inline-block align-middle w-6 h-6 mr-2" />
-                    <span className="inline align-middle font-bold">Orion, your AI Copilot</span>
-                    <span className="inline align-middle text-gray-600 mx-2">/</span>
-                    <span className="inline align-middle text-gray-600">Job searching can be lonely. Chat with Orion for 24/7 genuine career support</span>
-                  </h3>
+            <div className="space-y-8 pt-16">
+              <h3 className="text-2xl leading-normal">
+                <img src="/features/i4.svg" alt="" className="inline-block align-middle w-6 h-6 mr-2" />
+                <span className="inline align-middle font-bold">Orion, your AI Copilot</span>
+                <span className="inline align-middle text-gray-600 mx-2">/</span>
+                <span className="inline align-middle text-gray-600">Job searching can be lonely. Chat with Orion for 24/7 genuine career support</span>
+              </h3>
+
+              <div className="flex flex-col lg:flex-row gap-12">
+                <div className="flex-1">
+                  <ul className="space-y-4 text-gray-600 text-lg">
+                    <li>• Focus your efforts with a more tailored list of jobs</li>
+                    <li>• Wow in your interviews with specific company insights</li>
+                    <li>• Understand why you are a good fit for a role</li>
+                    <li>• Stuck in your job search or career? Get personalized guidance and coaching</li>
+                  </ul>
+                  <button className="mt-8 bg-black text-white px-6 py-2.5 rounded-full inline-flex items-center space-x-2 hover:bg-gray-800 transition-all">
+                    <span>Ask Orion</span>
+                    <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                  </button>
                 </div>
-                <ul className="space-y-4 text-gray-600 text-lg">
-                  <li>• Focus your efforts with a more tailored list of jobs</li>
-                  <li>• Wow in your interviews with specific company insights</li>
-                  <li>• Understand why you are a good fit for a role</li>
-                  <li>• Stuck in your job search or career? Get personalized guidance and coaching</li>
-                </ul>
-                <button className="mt-8 bg-black text-white px-8 py-3 rounded-full inline-flex items-center gap-3 hover:bg-gray-800 transition-all text-base">
-                  <span>Ask Orion</span>
-                  <span className="w-1 h-1 bg-white rounded-full"></span>
-                </button>
-              </div>
-              <div className="flex-1">
-                <img src="/features/f4.png" alt="Orion AI Copilot" className="w-full" />
+                <div className="flex-1">
+                  <img src="/features/f4.png" alt="Orion AI Copilot" className="w-full" />
+                </div>
               </div>
             </div>
 
