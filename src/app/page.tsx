@@ -81,15 +81,12 @@ export default function Home() {
             {/* AI Job Match */}
             <div className="flex flex-col lg:flex-row gap-12 pb-16 border-b border-gray-200">
               <div className="flex-1 space-y-6">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <img src="/features/i1.svg" alt="" className="w-6 h-6" />
-                    <span className="text-2xl font-bold">AI Job Match</span>
-                    <span className="text-xl text-gray-600">/</span>
-                    <span className="text-xl text-gray-600">Job searching is already hard!</span>
-                  </div>
-                  <h3 className="text-2xl">
-                    Increase your odds with AI matched Jobs
+                <div>
+                  <h3 className="text-2xl leading-normal">
+                    <img src="/features/i1.svg" alt="" className="inline-block align-middle w-6 h-6 mr-2" />
+                    <span className="inline align-middle font-bold">AI Job Match</span>
+                    <span className="inline align-middle text-gray-600 mx-2">/</span>
+                    <span className="inline align-middle text-gray-600">Job searching is already hard! Increase your odds with AI matched Jobs</span>
                   </h3>
                 </div>
                 <ul className="space-y-4 text-gray-600 text-lg">
@@ -111,13 +108,13 @@ export default function Home() {
             {/* Resume AI */}
             <div className="flex flex-col lg:flex-row gap-12 py-16 border-b border-gray-200">
               <div className="flex-1 space-y-6">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <img src="/features/i2.svg" alt="" className="w-6 h-6" />
-                    <span className="text-2xl font-bold">Resume AI</span>
-                    <span className="text-xl text-gray-600">/</span>
-                    <span className="text-xl text-gray-600">Stand out from the crowd with a top notch resume</span>
-                  </div>
+                <div>
+                  <h3 className="text-2xl leading-normal">
+                    <img src="/features/i2.svg" alt="" className="inline-block align-middle w-6 h-6 mr-2" />
+                    <span className="inline align-middle font-bold">Resume AI</span>
+                    <span className="inline align-middle text-gray-600 mx-2">/</span>
+                    <span className="inline align-middle text-gray-600">Stand out from the crowd with a top notch resume</span>
+                  </h3>
                 </div>
                 <ul className="space-y-4 text-gray-600 text-lg">
                   <li>• Get a professional quality resume in minutes, not hours</li>
@@ -137,15 +134,12 @@ export default function Home() {
             {/* Insider Connections */}
             <div className="flex flex-col lg:flex-row gap-12 py-16 border-b border-gray-200">
               <div className="flex-1 space-y-6">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <img src="/features/i3.svg" alt="" className="w-6 h-6" />
-                    <span className="text-2xl font-bold">Insider connections</span>
-                    <span className="text-xl text-gray-600">/</span>
-                    <span className="text-xl text-gray-600">Network like a pro with our recommended insider connections</span>
-                  </div>
-                  <h3 className="text-2xl">
-                    Connect, get referrals, and land interviews!
+                <div>
+                  <h3 className="text-2xl leading-normal">
+                    <img src="/features/i3.svg" alt="" className="inline-block align-middle w-6 h-6 mr-2" />
+                    <span className="inline align-middle font-bold">Insider connections</span>
+                    <span className="inline align-middle text-gray-600 mx-2">/</span>
+                    <span className="inline align-middle text-gray-600">Network like a pro with our recommended insider connections. Connect, get referrals, and land interviews!</span>
                   </h3>
                 </div>
                 <ul className="space-y-4 text-gray-600 text-lg">
@@ -167,15 +161,12 @@ export default function Home() {
             {/* Orion AI Copilot */}
             <div className="flex flex-col lg:flex-row gap-12 pt-16">
               <div className="flex-1 space-y-6">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <img src="/features/i4.svg" alt="" className="w-6 h-6" />
-                    <span className="text-2xl font-bold">Orion, your AI Copilot</span>
-                    <span className="text-xl text-gray-600">/</span>
-                    <span className="text-xl text-gray-600">Job searching can be lonely</span>
-                  </div>
-                  <h3 className="text-2xl">
-                    Chat with Orion for 24/7 genuine career support
+                <div>
+                  <h3 className="text-2xl leading-normal">
+                    <img src="/features/i4.svg" alt="" className="inline-block align-middle w-6 h-6 mr-2" />
+                    <span className="inline align-middle font-bold">Orion, your AI Copilot</span>
+                    <span className="inline align-middle text-gray-600 mx-2">/</span>
+                    <span className="inline align-middle text-gray-600">Job searching can be lonely. Chat with Orion for 24/7 genuine career support</span>
                   </h3>
                 </div>
                 <ul className="space-y-4 text-gray-600 text-lg">
