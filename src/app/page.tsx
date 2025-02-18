@@ -81,154 +81,119 @@ export default function Home() {
             {/* AI Job Match */}
             <div className="flex flex-col lg:flex-row gap-12 pb-16 border-b border-gray-200">
               <div className="flex-1 space-y-6">
-                <h3 className="text-2xl font-bold">
-                  <span className="inline-flex items-center">
-                    <span className="text-[#00FF9D] mr-2">✨</span>
-                    AI Job Match
-                  </span>
-                  <span className="text-gray-600 font-normal ml-2">/ Job searching is already hard!</span>
-                </h3>
-                <p className="text-xl">Increase your odds with AI matched Jobs</p>
-                <ul className="space-y-3 text-gray-600">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <img src="/features/f1-icon.png" alt="" className="w-6 h-6" />
+                    <span className="text-2xl font-bold">AI Job Match</span>
+                    <span className="text-xl text-gray-600">/</span>
+                    <span className="text-xl text-gray-600">Job searching is already hard!</span>
+                  </div>
+                  <h3 className="text-2xl">
+                    Increase your odds with AI matched Jobs
+                  </h3>
+                </div>
+                <ul className="space-y-4 text-gray-600 text-lg">
                   <li>• Apply only to Jobs you are qualified for</li>
                   <li>• Discover matched jobs based on your skills, not only titles</li>
                   <li>• Say goodbye to fake jobs</li>
                   <li>• Apply early with our custom job alerts</li>
                 </ul>
-                <button className="mt-8 bg-black text-white px-6 py-2.5 rounded-full inline-flex items-center space-x-2 hover:bg-gray-800 transition-all">
+                <button className="mt-8 bg-black text-white px-8 py-3 rounded-full inline-flex items-center gap-3 hover:bg-gray-800 transition-all text-base">
                   <span>Start Matching</span>
-                  <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                  <span className="w-1 h-1 bg-white rounded-full"></span>
                 </button>
               </div>
               <div className="flex-1">
-                <div className="bg-white rounded-lg p-6 shadow-lg">
-                  <div className="flex items-start gap-4 mb-4">
-                    <img src="/microsoft.png" alt="Microsoft" className="w-8 h-8" />
-                    <div>
-                      <div className="font-medium">Senior Data Analyst</div>
-                      <div className="text-gray-500">Microsoft</div>
-                    </div>
-                    <div className="ml-auto">
-                      <div className="text-2xl font-bold text-[#00FF9D]">96%</div>
-                      <div className="text-sm text-gray-500">Overall</div>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-3 gap-4 mb-6">
-                    <div className="text-center">
-                      <div className="text-lg font-bold text-[#00FF9D]">100%</div>
-                      <div className="text-sm text-gray-500">Exp. Level</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-lg font-bold text-[#00FF9D]">92%</div>
-                      <div className="text-sm text-gray-500">Skill</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-lg font-bold text-[#00FF9D]">96%</div>
-                      <div className="text-sm text-gray-500">Industry Exp.</div>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="inline-block bg-[#E6FFF5] text-[#00FF9D] px-3 py-1 rounded-full text-sm">✓ Experience Level</div>
-                    <div className="inline-block bg-[#E6FFF5] text-[#00FF9D] px-3 py-1 rounded-full text-sm">✓ Required Experience</div>
-                    <div className="inline-block bg-[#E6FFF5] text-[#00FF9D] px-3 py-1 rounded-full text-sm">✓ Education</div>
-                    <div className="inline-block bg-[#E6FFF5] text-[#00FF9D] px-3 py-1 rounded-full text-sm">✓ Core Skills</div>
-                  </div>
-                </div>
+                <img src="/features/f1.png" alt="AI Job Match" className="w-full" />
               </div>
             </div>
 
             {/* Resume AI */}
             <div className="flex flex-col lg:flex-row gap-12 py-16 border-b border-gray-200">
               <div className="flex-1 space-y-6">
-                <h3 className="text-2xl font-bold">
-                  <span className="inline-flex items-center">
-                    <span className="text-[#00FF9D] mr-2">📝</span>
-                    Resume AI
-                  </span>
-                  <span className="text-gray-600 font-normal ml-2">/ Stand out from the crowd with a top notch resume</span>
-                </h3>
-                <ul className="space-y-3 text-gray-600">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <img src="/features/f2-icon.png" alt="" className="w-6 h-6" />
+                    <span className="text-2xl font-bold">Resume AI</span>
+                    <span className="text-xl text-gray-600">/</span>
+                    <span className="text-xl text-gray-600">Stand out from the crowd with a top notch resume</span>
+                  </div>
+                </div>
+                <ul className="space-y-4 text-gray-600 text-lg">
                   <li>• Get a professional quality resume in minutes, not hours</li>
                   <li>• Keep tailoring your resume with AI and catch HR's eyes in 6 seconds</li>
                   <li>• Rest easy knowing your resume will be ATS compatible</li>
                 </ul>
-                <button className="mt-8 bg-black text-white px-6 py-2.5 rounded-full inline-flex items-center space-x-2 hover:bg-gray-800 transition-all">
+                <button className="mt-8 bg-black text-white px-8 py-3 rounded-full inline-flex items-center gap-3 hover:bg-gray-800 transition-all text-base">
                   <span>Improve My Resume</span>
-                  <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                  <span className="w-1 h-1 bg-white rounded-full"></span>
                 </button>
               </div>
               <div className="flex-1">
-                <div className="bg-white rounded-lg p-6 shadow-lg relative">
-                  <div className="absolute top-4 right-4">
-                    <div className="text-2xl font-bold text-[#00FF9D]">90</div>
-                    <div className="text-sm text-gray-500">EXCELLENT</div>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="h-4 bg-gray-100 rounded w-3/4"></div>
-                    <div className="h-4 bg-gray-100 rounded w-1/2"></div>
-                    <div className="h-32 bg-gray-100 rounded"></div>
-                    <div className="space-y-2">
-                      <div className="inline-block bg-[#E6FFF5] text-[#00FF9D] px-3 py-1 rounded-full text-sm">✓ Summary Enhanced</div>
-                      <div className="inline-block bg-[#E6FFF5] text-[#00FF9D] px-3 py-1 rounded-full text-sm">✓ Relevant Skills Highlighted</div>
-                      <div className="inline-block bg-[#E6FFF5] text-[#00FF9D] px-3 py-1 rounded-full text-sm">✓ Recent Work Experience Enhanced</div>
-                    </div>
-                  </div>
-                </div>
+                <img src="/features/f2.png" alt="Resume AI" className="w-full" />
               </div>
             </div>
 
             {/* Insider Connections */}
-            <div className="flex flex-col lg:flex-row gap-12 pt-16">
+            <div className="flex flex-col lg:flex-row gap-12 py-16 border-b border-gray-200">
               <div className="flex-1 space-y-6">
-                <h3 className="text-2xl font-bold">
-                  <span className="inline-flex items-center">
-                    <span className="text-[#00FF9D] mr-2">🔗</span>
-                    Insider connections
-                  </span>
-                  <span className="text-gray-600 font-normal ml-2">/ Network like a pro with our recommended insider connections</span>
-                </h3>
-                <p className="text-xl">Connect, get referrals, and land interviews!</p>
-                <ul className="space-y-3 text-gray-600">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <img src="/features/f3-icon.png" alt="" className="w-6 h-6" />
+                    <span className="text-2xl font-bold">Insider connections</span>
+                    <span className="text-xl text-gray-600">/</span>
+                    <span className="text-xl text-gray-600">Network like a pro with our recommended insider connections</span>
+                  </div>
+                  <h3 className="text-2xl">
+                    Connect, get referrals, and land interviews!
+                  </h3>
+                </div>
+                <ul className="space-y-4 text-gray-600 text-lg">
                   <li>• Increase your chances of landing an interview by 4X with insider referrals</li>
                   <li>• Easily discover alumni and past colleagues within your target company</li>
                   <li>• Gain access to key connections, such as hiring managers and direct reports</li>
                   <li>• Easily personalize your cold outreach message with our custom templates</li>
                 </ul>
-                <button className="mt-8 bg-black text-white px-6 py-2.5 rounded-full inline-flex items-center space-x-2 hover:bg-gray-800 transition-all">
+                <button className="mt-8 bg-black text-white px-8 py-3 rounded-full inline-flex items-center gap-3 hover:bg-gray-800 transition-all text-base">
                   <span>Get Connected</span>
-                  <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                  <span className="w-1 h-1 bg-white rounded-full"></span>
                 </button>
               </div>
               <div className="flex-1">
-                <div className="bg-white rounded-lg p-6 shadow-lg">
-                  <div className="mb-6">
-                    <div className="text-sm text-gray-500 mb-2">Found 3 contacts for you</div>
-                    <div className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
-                      <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
-                      <div>
-                        <div className="font-medium">Ethan & Tobi</div>
-                        <div className="text-sm text-gray-500">Software Engineer</div>
-                      </div>
-                      <button className="ml-auto bg-[#E6FFF5] text-[#00FF9D] px-4 py-1 rounded-full text-sm">
-                        CONNECT
-                      </button>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-4 p-3">
-                      <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
-                      <div>
-                        <div className="font-medium">Nikki</div>
-                        <div className="text-sm text-gray-500">Hiring Manager</div>
-                      </div>
-                      <button className="ml-auto bg-[#E6FFF5] text-[#00FF9D] px-4 py-1 rounded-full text-sm">
-                        CONNECT
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                <img src="/features/f3.png" alt="Insider Connections" className="w-full" />
               </div>
             </div>
+
+            {/* Orion AI Copilot */}
+            <div className="flex flex-col lg:flex-row gap-12 pt-16">
+              <div className="flex-1 space-y-6">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <img src="/features/f4-icon.png" alt="" className="w-6 h-6" />
+                    <span className="text-2xl font-bold">Orion, your AI Copilot</span>
+                    <span className="text-xl text-gray-600">/</span>
+                    <span className="text-xl text-gray-600">Job searching can be lonely</span>
+                  </div>
+                  <h3 className="text-2xl">
+                    Chat with Orion for 24/7 genuine career support
+                  </h3>
+                </div>
+                <ul className="space-y-4 text-gray-600 text-lg">
+                  <li>• Focus your efforts with a more tailored list of jobs</li>
+                  <li>• Wow in your interviews with specific company insights</li>
+                  <li>• Understand why you are a good fit for a role</li>
+                  <li>• Stuck in your job search or career? Get personalized guidance and coaching</li>
+                </ul>
+                <button className="mt-8 bg-black text-white px-8 py-3 rounded-full inline-flex items-center gap-3 hover:bg-gray-800 transition-all text-base">
+                  <span>Ask Orion</span>
+                  <span className="w-1 h-1 bg-white rounded-full"></span>
+                </button>
+              </div>
+              <div className="flex-1">
+                <img src="/features/f4.png" alt="Orion AI Copilot" className="w-full" />
+              </div>
+            </div>
+
           </div>
         </div>
       </main>
