@@ -1,6 +1,14 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { Menu } from "lucide-react"
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerTrigger,
+  DrawerTitle,
+} from "@/components/ui/drawer"
 
 const features = [
   {
@@ -80,11 +88,51 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#E0FFFF] via-white to-[#E0FFFF] scroll-smooth">
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100' : 'bg-transparent'
-        }`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
           <div className="flex items-center">
-            <span className="font-bold text-xl sm:text-2xl bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent">JobPilot</span>
+            <Drawer>
+              {isScrolled ? (
+                <DrawerTrigger asChild>
+                  <button className="md:hidden mr-4">
+                    <Menu className="h-6 w-6" />
+                  </button>
+                </DrawerTrigger>
+              ) : null}
+              <DrawerContent 
+                side="left" 
+                className="w-[300px] h-screen p-4"
+                aria-describedby="drawer-description"
+              >
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between mb-8">
+                    <DrawerTitle className="font-bold text-xl bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent">
+                      JobPilot Navigation
+                    </DrawerTitle>
+                    <DrawerClose className="p-2 hover:bg-gray-100 rounded-full">
+                      <span className="sr-only">Close navigation menu</span>
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </DrawerClose>
+                  </div>
+                  <p id="drawer-description" className="sr-only">
+                    Navigation menu containing links to features, tools, resume AI, employer section, about us, and blog
+                  </p>
+                  <div className="space-y-6">
+                    <a href="#features" className="block text-lg text-gray-600 hover:text-black transition-colors">Features</a>
+                    <a href="#tools" className="block text-lg text-gray-600 hover:text-black transition-colors">Tools</a>
+                    <a href="#resume" className="block text-lg text-gray-600 hover:text-black transition-colors">Resume AI</a>
+                    <a href="#employer" className="block text-lg text-gray-600 hover:text-black transition-colors">For Employer</a>
+                    <a href="#about" className="block text-lg text-gray-600 hover:text-black transition-colors">About Us</a>
+                    <a href="#blog" className="block text-lg text-gray-600 hover:text-black transition-colors">Blog</a>
+                  </div>
+                </div>
+              </DrawerContent>
+            </Drawer>
+            <span className={`font-bold text-xl sm:text-2xl bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent ${isScrolled ? 'hidden md:inline-block' : ''}`}>
+              JobPilot
+            </span>
             <div className="hidden md:flex space-x-6 ml-10">
               <a href="#features" className="text-gray-600 hover:text-black transition-colors">Features</a>
               <a href="#tools" className="text-gray-600 hover:text-black transition-colors">Tools</a>
