@@ -155,18 +155,22 @@ export default function Home() {
 
                 <div className="flex flex-col lg:flex-row gap-12">
                   <div className="flex-1 flex flex-col">
-                    <ul className="space-y-4 text-gray-600 text-lg">
+                    <ul className="space-y-4 text-gray-600 text-lg mb-12 lg:mb-0">
                       {feature.points.map((point, i) => (
                         <li key={i}>• {point}</li>
                       ))}
                     </ul>
-                    <div className="flex-grow"></div>
-                    <button className="bg-black text-white px-6 py-2.5 rounded-full inline-flex items-center space-x-2 hover:bg-gray-800 transition-all w-fit">
-                      <span>{feature.buttonText}</span>
-                      <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
-                    </button>
+                    <div className="block lg:hidden mb-8">
+                      <img src={feature.image} alt={feature.imageAlt} className="w-full" />
+                    </div>
+                    <div className="lg:mt-auto flex lg:block">
+                      <button className="bg-black text-white px-6 py-2.5 rounded-full inline-flex items-center space-x-2 hover:bg-gray-800 transition-all w-fit mx-auto lg:mx-0">
+                        <span>{feature.buttonText}</span>
+                        <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                      </button>
+                    </div>
                   </div>
-                  <div className="flex-1">
+                  <div className="flex-1 hidden lg:flex items-end">
                     <img src={feature.image} alt={feature.imageAlt} className="w-full" />
                   </div>
                 </div>
