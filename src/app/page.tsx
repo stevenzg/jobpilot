@@ -8,6 +8,7 @@ import {
   DrawerContent,
   DrawerTrigger,
   DrawerTitle,
+  DrawerDescription,
 } from "@/components/ui/drawer"
 
 const features = [
@@ -99,11 +100,7 @@ export default function Home() {
                   </button>
                 </DrawerTrigger>
               ) : null}
-              <DrawerContent 
-                side="left" 
-                className="w-[300px] h-screen p-4"
-                aria-describedby="drawer-description"
-              >
+              <DrawerContent side="left" className="w-[300px] h-screen p-4">
                 <div className="space-y-6">
                   <div className="flex items-center justify-between mb-8">
                     <DrawerTitle className="font-bold text-xl bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent">
@@ -116,9 +113,9 @@ export default function Home() {
                       </svg>
                     </DrawerClose>
                   </div>
-                  <p id="drawer-description" className="sr-only">
+                  <DrawerDescription className="sr-only">
                     Navigation menu containing links to features, tools, resume AI, employer section, about us, and blog
-                  </p>
+                  </DrawerDescription>
                   <div className="space-y-6">
                     <a href="#features" className="block text-lg text-gray-600 hover:text-black transition-colors">Features</a>
                     <a href="#tools" className="block text-lg text-gray-600 hover:text-black transition-colors">Tools</a>
@@ -167,7 +164,7 @@ export default function Home() {
             Our AI makes landing job interviews dramatically easier and faster! Get matched jobs, tailored resume, and insider connections in less than 1 min!
           </p>
           <div className="flex flex-col gap-3 sm:gap-4 mb-8 sm:mb-10">
-            <button className="bg-black hover:bg-gray-800 text-white font-semibold px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-base transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 mx-auto w-[90%] sm:w-auto">
+            <button className="bg-black hover:bg-gray-800 text-white font-semibold px-6 sm:px-8 py-3.5 sm:py-4 rounded-full inline-flex items-center space-x-2 hover:bg-gray-800 transition-all w-fit mx-auto lg:mx-0">
               Try JobPilot for Free
             </button>
           </div>
