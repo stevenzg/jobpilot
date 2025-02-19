@@ -8,6 +8,9 @@ import {
   SheetContent,
   SheetTrigger,
   SheetClose,
+  SheetTitle,
+  SheetDescription,
+  SheetHeader,
 } from "@/components/ui/sheet"
 
 const features = [
@@ -101,11 +104,14 @@ export default function Home() {
               ) : null}
               <SheetContent side="left" className="w-[300px] sm:w-[400px] p-0">
                 <div className="h-full p-6">
-                  <div className="flex items-center justify-between mb-8">
-                    <span className="font-bold text-xl bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent">
-                      JobPilot
-                    </span>
-                  </div>
+                  <SheetHeader className="mb-8">
+                    <SheetTitle className="font-bold text-xl bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent">
+                      JobPilot Navigation
+                    </SheetTitle>
+                    <SheetDescription className="text-sm text-gray-500">
+                      Access all sections of JobPilot
+                    </SheetDescription>
+                  </SheetHeader>
                   <nav className="space-y-6">
                     <a href="#features" className="block text-lg text-gray-600 hover:text-black transition-colors">Features</a>
                     <a href="#tools" className="block text-lg text-gray-600 hover:text-black transition-colors">Tools</a>
