@@ -91,7 +91,7 @@ export default function Home() {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768) // 768px is our md breakpoint
     }
-    
+
     handleResize() // Initial check
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
@@ -125,7 +125,7 @@ export default function Home() {
                 <div className="h-full p-6">
                   <SheetHeader className="mb-8">
                     <SheetTitle className="font-bold text-xl bg-gradient-to-r from-[#00FF9D] to-[#00E090] bg-clip-text text-transparent">
-                      JobPilot Navigation
+                      JobPilot
                     </SheetTitle>
                     <SheetDescription className="text-sm text-gray-500">
                       Access all sections of JobPilot
