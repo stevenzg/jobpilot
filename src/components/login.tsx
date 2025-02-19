@@ -74,7 +74,7 @@ export function Login() {
   return (
     <div className="w-full max-w-md mx-auto p-6">
       <h2 className="text-2xl font-bold text-center mb-2">Sign In with Email</h2>
-      <p className="text-gray-600 text-center mb-6">We'll send you a verification code</p>
+      <p className="text-gray-600 text-center mb-6">We&apos;ll send you a verification code</p>
       
       {error && (
         <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-600 rounded-md text-sm">
@@ -158,7 +158,7 @@ export function Login() {
 
       <div className="mt-6 text-center">
         <p className="text-xs text-gray-500">
-          By continuing, you agree to JobPilot's{" "}
+          By continuing, you agree to JobPilot&apos;s{" "}
           <a href="#" className="text-[#00E090] hover:text-[#00FF9D]">
             Terms of Service
           </a>{" "}
