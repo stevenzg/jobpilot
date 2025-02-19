@@ -11,6 +11,15 @@ import {
   SheetDescription,
   SheetHeader,
 } from "@/components/ui/sheet"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Login } from "@/components/login"
 
 const features = [
   {
@@ -76,6 +85,17 @@ const features = [
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768) // 768px is our md breakpoint
+    }
+    
+    handleResize() // Initial check
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -135,12 +155,37 @@ export default function Home() {
             </div>
           </div>
           <div className="flex items-center">
-            <a
-              href="/login"
-              className="bg-black text-white px-5 sm:px-6 py-2 sm:py-2.5 rounded-full hover:bg-gray-800 transition-all text-sm font-medium shadow-md hover:shadow-lg"
-            >
-              Get Started
-            </a>
+            {isMobile ? (
+              <Sheet>
+                <SheetTrigger asChild>
+                  <button className="bg-black text-white px-5 sm:px-6 py-2 sm:py-2.5 rounded-full hover:bg-gray-800 transition-all text-sm font-medium shadow-md hover:shadow-lg">
+                    Get Started
+                  </button>
+                </SheetTrigger>
+                <SheetContent side="bottom" className="h-[90vh]">
+                  <SheetHeader>
+                    <SheetTitle>Welcome to JobPilot</SheetTitle>
+                    <SheetDescription>Sign in to start your journey</SheetDescription>
+                  </SheetHeader>
+                  <Login />
+                </SheetContent>
+              </Sheet>
+            ) : (
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button className="bg-black text-white px-5 sm:px-6 py-2 sm:py-2.5 rounded-full hover:bg-gray-800 transition-all text-sm font-medium shadow-md hover:shadow-lg">
+                    Get Started
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle>Welcome to JobPilot</DialogTitle>
+                    <DialogDescription>Sign in to start your journey</DialogDescription>
+                  </DialogHeader>
+                  <Login />
+                </DialogContent>
+              </Dialog>
+            )}
           </div>
         </div>
       </nav>
