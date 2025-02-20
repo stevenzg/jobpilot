@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { Menu } from "lucide-react"
 import Image from "next/image"
+import { useAuthRedirect } from "./hooks/useAuthRedirect"
 import {
   Sheet,
   SheetContent,
@@ -86,6 +87,9 @@ const features = [
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+
+  // 使用 hook 检查用户状态并跳转
+  useAuthRedirect();
 
   useEffect(() => {
     const handleResize = () => {
