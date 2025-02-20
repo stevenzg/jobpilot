@@ -43,33 +43,43 @@ export function Login() {
     }
   }
 
-  const handleVerify = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!verificationCode) {
-      setError("Please enter the verification code")
-      return
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isCodeSent) {
+      handleSendCode();
+      return;
     }
 
     try {
-      setIsLoading(true)
-      setError("")
+      setIsLoading(true);
+      setError("");
+      const response = await authService.verify(email, verificationCode);
+      
+      // 存储 token 和用户基本信息
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("user", JSON.stringify({
+        id: response.id,
+        email: response.email,
+        name: response.name
+      }));
 
-      const response = await authService.verify(email, verificationCode)
-      
-      // Store token and user info
-      localStorage.setItem("token", response.token)
-      localStorage.setItem("user", JSON.stringify(response.user))
-      
-      // Redirect to dashboard
-      router.push("/dashboard")
-    } catch (err) {
-      setError("Invalid verification code. Please try again.")
-      console.error("Verification error:", err)
+      // 根据缺失的字段决定跳转方向
+      if (!response.searchMode) {
+        // 如果没有 searchMode，跳转到模式选择页面
+        router.push("/onboarding/mode-selection");
+      } else if (!response.jobCategories?.length || !response.jobTypes?.length || !response.locations?.length) {
+        // 如果缺少其他偏好设置，跳转到诊断页面
+        router.push("/onboarding/diagnostics");
+      } else {
+        // 如果所有信息都完整，跳转到 dashboard
+        router.push("/dashboard");
+      }
+    } catch {
+      setError("Invalid verification code. Please try again.");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className="w-full max-w-md mx-auto p-6">
@@ -82,7 +92,7 @@ export function Login() {
         </div>
       )}
 
-      <form onSubmit={isCodeSent ? handleVerify : handleSendCode} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
             Email

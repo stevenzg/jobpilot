@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation"
 import Image from "next/image"
+import { LogoutButton } from "@/components/logout-button"
 import { useState, useEffect } from "react"
 import axios from "axios"
 
@@ -104,12 +105,7 @@ export default function DiagnosticsPage() {
           <span className="font-semibold">Orion</span>
           <span className="inline-block w-2 h-2 bg-green-500 rounded-full" />
         </div>
-        <button
-          onClick={() => router.push("/logout")}
-          className="text-sm text-gray-600 hover:text-gray-900"
-        >
-          Logout
-        </button>
+        <LogoutButton />
       </div>
 
       {/* Main Content */}

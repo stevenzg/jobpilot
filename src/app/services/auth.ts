@@ -31,5 +31,11 @@ export const authService = {
   verify: async (email: string, code: string) => {
     const response = await axios.post<LoginResponse>(`${API_URL}/api/auth/verify`, { email, code });
     return response.data;
+  },
+
+  logout: () => {
+    // 清除本地存储的用户信息
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
   }
 };
