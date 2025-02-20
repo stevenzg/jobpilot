@@ -49,11 +49,26 @@ export default function LoginPage() {
       setLoading(true);
       setError("");
       const response = await authService.verify(email, code);
-      // Store token and user info
+      
+      // 存储 token 和用户信息
       localStorage.setItem("token", response.token);
-      localStorage.setItem("user", JSON.stringify(response.user));
-      // Redirect to dashboard
-      router.push("/dashboard");
+      localStorage.setItem("user", JSON.stringify({
+        id: response.id,
+        email: response.email,
+        name: response.name
+      }));
+
+      // 根据缺失的字段决定跳转方向
+      if (!response.searchMode) {
+        // 如果没有 searchMode，跳转到模式选择页面
+        router.push("/onboarding/mode-selection");
+      } else if (!response.jobCategories?.length || !response.jobTypes?.length || !response.locations?.length) {
+        // 如果缺少其他偏好设置，跳转到诊断页面
+        router.push("/onboarding/diagnostics");
+      } else {
+        // 如果所有信息都完整，跳转到 dashboard
+        router.push("/dashboard");
+      }
     } catch {
       setError("Invalid verification code. Please try again.");
     } finally {

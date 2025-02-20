@@ -11,15 +11,15 @@ export interface VerifyCodeRequest {
   code: string;
 }
 
-export interface UserDto {
+export interface LoginResponse {
+  token: string;
   id: string;
   email: string;
   name: string | null;
-}
-
-export interface LoginResponse {
-  token: string;
-  user: UserDto;
+  searchMode: string | null;
+  jobCategories: string[] | null;
+  jobTypes: string[] | null;
+  locations: string[] | null;
 }
 
 export const authService = {

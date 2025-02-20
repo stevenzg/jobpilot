@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { useState, useEffect } from "react"
+import axios from "axios"
 
 type JobType = "Full-time" | "Contract" | "Part-time" | "Internship"
 type Location = "Within US" | "Open to Remote"
@@ -16,6 +17,8 @@ export default function DiagnosticsPage() {
   const [jobTypes, setJobTypes] = useState<JobType[]>(["Full-time"])
   const [locations, setLocations] = useState<Location[]>(["Within US"])
   const [workAuthorizations, setWorkAuthorizations] = useState<WorkAuthorization[]>([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState("")
 
   useEffect(() => {
     const mode = localStorage.getItem("searchMode") as SearchMode
@@ -54,14 +57,36 @@ export default function DiagnosticsPage() {
     )
   }
 
-  const handleNext = () => {
-    // Save job preferences
-    localStorage.setItem("jobFunction", jobFunction)
-    localStorage.setItem("jobTypes", JSON.stringify(jobTypes))
-    localStorage.setItem("locations", JSON.stringify(locations))
-    localStorage.setItem("workAuthorizations", JSON.stringify(workAuthorizations))
-    
-    router.push("/onboarding/market-analysis")
+  const handleNext = async () => {
+    try {
+      setIsLoading(true)
+      setError("")
+
+      // 保存到本地存储
+      localStorage.setItem("jobFunction", jobFunction)
+      localStorage.setItem("jobTypes", JSON.stringify(jobTypes))
+      localStorage.setItem("locations", JSON.stringify(locations))
+      localStorage.setItem("workAuthorizations", JSON.stringify(workAuthorizations))
+      
+      // 调用 API 保存用户偏好
+      await axios.post("/api/auth/preferences", {
+        jobFunction,
+        jobTypes,
+        locations,
+        workAuthorizations
+      }, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+
+      router.push("/onboarding/market-analysis")
+    } catch (err) {
+      console.error("Failed to save preferences:", err)
+      setError("Failed to save preferences. Please try again.")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -188,14 +213,28 @@ export default function DiagnosticsPage() {
           </div>
         </div>
 
+        {/* Error Message */}
+        {error && (
+          <div className="mt-4 text-red-500 text-sm">
+            {error}
+          </div>
+        )}
+
         {/* Next Button */}
         <div className="flex justify-end mt-6">
           <button
             onClick={handleNext}
-            disabled={!jobFunction}
-            className="bg-black text-white px-8 py-2 rounded-full hover:opacity-80 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={!jobFunction || isLoading}
+            className="bg-black text-white px-8 py-2 rounded-full hover:opacity-80 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
           >
-            Next
+            {isLoading ? (
+              <>
+                <span className="animate-spin">⌛</span>
+                Saving...
+              </>
+            ) : (
+              "Next"
+            )}
           </button>
         </div>
       </div>
