@@ -3,14 +3,36 @@
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { LogoutButton } from "@/components/logout-button"
+import { useState } from "react"
+import { authService } from "@/app/services/auth"
+
+type SearchMode = "rush" | "casual"
 
 export default function ModeSelectionPage() {
   const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState("")
 
-  const handleModeSelect = (mode: "rush" | "casual") => {
-    // TODO: Save the selected mode to user preferences
-    localStorage.setItem("searchMode", mode)
-    router.push("/onboarding/diagnostics")
+  const handleModeSelect = async (mode: SearchMode) => {
+    try {
+      setIsLoading(true)
+      setError("")
+
+      // 调用 API 更新 searchMode
+      await authService.updateSearchMode(mode)
+
+      // 保存到本地存储
+      const user = JSON.parse(localStorage.getItem("user") || "{}")
+      localStorage.setItem("user", JSON.stringify({ ...user, searchMode: mode }))
+
+      // 跳转到下一步
+      router.push("/onboarding/diagnostics")
+    } catch (err) {
+      console.error("Failed to update search mode:", err)
+      setError("Failed to save your preference. Please try again.")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -33,56 +55,53 @@ export default function ModeSelectionPage() {
 
       {/* Main Content */}
       <div className="max-w-4xl mx-auto mt-12">
-        <div className="space-y-4">
-          <h1 className="text-xl font-medium">Hi, I&apos;m Orion, your AI Copilot for job search.</h1>
-          <p className="text-gray-600">To get started, which best describes your current situation?</p>
+        <div className="space-y-4 mb-8">
+          <h1 className="text-xl font-medium">Welcome! Let's get started.</h1>
+          <p className="text-gray-600">How would you like to proceed with your job search?</p>
         </div>
 
-        {/* Mode Selection Cards */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Rush Mode Card */}
+        {error && (
+          <div className="mb-6 p-3 bg-red-50 text-red-700 rounded-lg text-sm">
+            {error}
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Rush Mode */}
           <button
             onClick={() => handleModeSelect("rush")}
-            className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center group"
+            disabled={isLoading}
+            className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all text-left space-y-4 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <div className="flex justify-center mb-6">
-              <div className="w-16 h-16">
-                <svg viewBox="0 0 24 24" className="w-full h-full">
-                  <path
-                    fill="currentColor"
-                    d="M13.75 9.56L16 7.31L14.56 5.87L12.31 8.12L10.25 6.06L12.5 3.81L11.06 2.37L8.81 4.62L6.75 2.56L5.31 4L7.37 6.06L5.12 8.31L6.56 9.75L8.81 7.5L10.87 9.56L8.62 11.81L10.06 13.25L12.31 11L13.75 9.56Z"
-                  />
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-[#00FF9D]/10 rounded-xl">
+                <svg className="w-6 h-6 text-[#00FF9D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
+              <h2 className="text-lg font-medium">Rush Mode</h2>
             </div>
-            <div className="bg-black text-white px-4 py-2 rounded-full inline-block mb-4">
-              I&apos;m looking for jobs in a rush
-            </div>
-            <p className="text-gray-500 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              We&apos;ll prioritize speed and efficiency
+            <p className="text-gray-600">
+              I need a job ASAP. Help me find and apply to as many relevant positions as possible.
             </p>
           </button>
 
-          {/* Casual Mode Card */}
+          {/* Casual Mode */}
           <button
             onClick={() => handleModeSelect("casual")}
-            className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center group"
+            disabled={isLoading}
+            className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all text-left space-y-4 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <div className="flex justify-center mb-6">
-              <div className="w-16 h-16">
-                <svg viewBox="0 0 24 24" className="w-full h-full">
-                  <path
-                    fill="currentColor"
-                    d="M2 21V19H20V21H2M20 8V5H18V8H20M20 3C21.11 3 22 3.9 22 5V8C22 9.11 21.11 10 20 10H18V13C18 14.11 17.11 15 16 15H8C6.9 15 6 14.11 6 13V10H4C2.9 10 2 9.11 2 8V5C2 3.9 2.9 3 4 3H20M16 10H8V13H16V10M4 8H6V5H4V8Z"
-                  />
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-[#00FF9D]/10 rounded-xl">
+                <svg className="w-6 h-6 text-[#00FF9D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
+              <h2 className="text-lg font-medium">Casual Mode</h2>
             </div>
-            <div className="bg-black text-white px-4 py-2 rounded-full inline-block mb-4">
-              I&apos;m open to new opportunities, no rush
-            </div>
-            <p className="text-gray-500 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              We&apos;ll focus on finding the perfect match
+            <p className="text-gray-600">
+              I'm open to opportunities but want to be selective. Help me find the perfect match.
             </p>
           </button>
         </div>

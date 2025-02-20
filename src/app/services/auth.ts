@@ -33,6 +33,24 @@ export const authService = {
     return response.data;
   },
 
+  updateSearchMode: async (searchMode: string) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('No token found');
+    }
+
+    await axios.post(
+      `${API_URL}/api/auth/search-mode`,
+      { searchMode },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+  },
+
   logout: () => {
     // 清除本地存储的用户信息
     localStorage.removeItem('token');
