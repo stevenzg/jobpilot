@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { useState } from "react"
 import { LogoutButton } from "@/components/logout-button"
+import { authService } from "@/app/services/auth"
 
 type UploadOption = "linkedin" | "resume" | null
 
@@ -38,12 +39,16 @@ export default function ResumeUploadPage() {
       setIsUploading(true)
       setError("")
 
-      // TODO: 实现文件上传逻辑
+      // TODO: 实现文件上传逻辑，获取文件 URL
       await new Promise(resolve => setTimeout(resolve, 1000)) // 模拟上传
+      const fileUrl = "https://example.com/resume.pdf" // 这里应该是实际的文件 URL
+
+      // 调用 API 更新用户的简历 URL
+      await authService.updateResumeUrl(fileUrl)
 
       // 更新本地存储
       const user = JSON.parse(localStorage.getItem("user") || "{}")
-      localStorage.setItem("user", JSON.stringify({ ...user, resumeUrl: "dummy-url" })) // 使用实际的 URL
+      localStorage.setItem("user", JSON.stringify({ ...user, resumeUrl: fileUrl }))
 
       // 直接跳转到 dashboard
       router.push("/dashboard")
@@ -60,8 +65,14 @@ export default function ResumeUploadPage() {
       setIsUploading(true)
       setError("")
 
-      // TODO: 实现 LinkedIn 个人资料获取逻辑
-      await new Promise(resolve => setTimeout(resolve, 1000)) // 模拟处理
+      // 验证 LinkedIn URL
+      if (!linkedinUrl.includes("linkedin.com/in/")) {
+        setError("Please enter a valid LinkedIn profile URL")
+        return
+      }
+
+      // 调用 API 更新用户的简历 URL（使用 LinkedIn URL）
+      await authService.updateResumeUrl(linkedinUrl)
 
       // 更新本地存储
       const user = JSON.parse(localStorage.getItem("user") || "{}")

@@ -52,6 +52,24 @@ export const authService = {
     );
   },
 
+  updateResumeUrl: async (resumeUrl: string) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('No token found');
+    }
+
+    await axios.post(
+      `${API_URL}/api/auth/resume-url`,
+      { resumeUrl },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+  },
+
   logout: () => {
     // 清除本地存储的用户信息
     localStorage.removeItem('token');
