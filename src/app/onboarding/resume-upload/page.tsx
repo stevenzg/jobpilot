@@ -71,8 +71,8 @@ export default function ResumeUploadPage() {
       const user = JSON.parse(localStorage.getItem("user") || "{}")
       localStorage.setItem("user", JSON.stringify({ ...user, resumeUrl: data.fileUrl }))
 
-      // 直接跳转到 dashboard
-      router.push("/dashboard")
+      // 直接跳转到推荐职位页面
+      router.push("/jobs/recommend")
     } catch (err) {
       console.error("Failed to upload resume:", err)
       setError("Failed to upload your resume. Please try again.")
@@ -99,8 +99,8 @@ export default function ResumeUploadPage() {
       const user = JSON.parse(localStorage.getItem("user") || "{}")
       localStorage.setItem("user", JSON.stringify({ ...user, resumeUrl: linkedinUrl }))
 
-      // 直接跳转到 dashboard
-      router.push("/dashboard")
+      // 直接跳转到推荐职位页面
+      router.push("/jobs/recommend")
     } catch (err) {
       console.error("Failed to process LinkedIn URL:", err)
       setError("Failed to process your LinkedIn profile. Please try again.")

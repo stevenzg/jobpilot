@@ -29,7 +29,7 @@ export function useAuthRedirect() {
         } else if (!user.resumeUrl) {
           router.push('/onboarding/resume-upload');
         } else {
-          router.push('/dashboard');
+          router.push('/jobs/recommend');
         }
       } catch (error) {
         console.error('Failed to check auth status:', error);
