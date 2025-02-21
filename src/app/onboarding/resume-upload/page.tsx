@@ -16,8 +16,6 @@ export default function ResumeUploadPage() {
   const [isUploading, setIsUploading] = useState(false)
   const [error, setError] = useState("")
 
-  const isOptionSelected = (option: "linkedin" | "resume") => selectedOption === option
-
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0]
     if (selectedFile) {

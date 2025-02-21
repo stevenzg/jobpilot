@@ -56,7 +56,7 @@ export default function ModeSelectionPage() {
       {/* Main Content */}
       <div className="max-w-4xl mx-auto mt-12">
         <div className="space-y-4 mb-8">
-          <h1 className="text-xl font-medium">Welcome! Let's get started.</h1>
+          <h1 className="text-xl font-medium">Welcome! Let&apos;s get started.</h1>
           <p className="text-gray-600">How would you like to proceed with your job search?</p>
         </div>
 
@@ -101,7 +101,7 @@ export default function ModeSelectionPage() {
               <h2 className="text-lg font-medium">Casual Mode</h2>
             </div>
             <p className="text-gray-600">
-              I'm open to opportunities but want to be selective. Help me find the perfect match.
+              I&apos;m open to opportunities but want to be selective. Help me find the perfect match.
             </p>
           </button>
         </div>
