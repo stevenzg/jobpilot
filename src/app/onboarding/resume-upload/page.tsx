@@ -37,16 +37,39 @@ export default function ResumeUploadPage() {
       setIsUploading(true)
       setError("")
 
-      // TODO: 实现文件上传逻辑，获取文件 URL
-      await new Promise(resolve => setTimeout(resolve, 1000)) // 模拟上传
-      const fileUrl = "https://example.com/resume.pdf" // 这里应该是实际的文件 URL
+      if (!file) {
+        setError("Please select a file to upload")
+        return
+      }
 
-      // 调用 API 更新用户的简历 URL
-      await authService.updateResumeUrl(fileUrl)
+      // 创建 FormData
+      const formData = new FormData()
+      formData.append("file", file)
+
+      // 获取 token
+      const token = localStorage.getItem("token")
+      if (!token) {
+        throw new Error("No token found")
+      }
+
+      // 上传文件
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/file/resume`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        body: formData
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to upload file")
+      }
+
+      const data = await response.json()
 
       // 更新本地存储
       const user = JSON.parse(localStorage.getItem("user") || "{}")
-      localStorage.setItem("user", JSON.stringify({ ...user, resumeUrl: fileUrl }))
+      localStorage.setItem("user", JSON.stringify({ ...user, resumeUrl: data.fileUrl }))
 
       // 直接跳转到 dashboard
       router.push("/dashboard")
