@@ -67,11 +67,11 @@ export function Login() {
       if (!response.searchMode) {
         // 如果没有 searchMode，跳转到模式选择页面
         router.push("/onboarding/mode-selection");
-      } else if (!response.jobCategories?.length || !response.jobTypes?.length || !response.locations?.length) {
-        // 如果缺少其他偏好设置，跳转到诊断页面
-        router.push("/onboarding/diagnostics");
+      } else if (!response.resumeUrl) {
+        // 如果没有上传简历，跳转到简历上传页面
+        router.push("/onboarding/resume-upload");
       } else {
-        // 如果所有信息都完整，跳转到 dashboard
+        // 如果基本信息都完整，跳转到 dashboard
         router.push("/dashboard");
       }
     } catch {

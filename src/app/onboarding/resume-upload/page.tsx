@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { useState } from "react"
+import { LogoutButton } from "@/components/logout-button"
 
 type UploadOption = "linkedin" | "resume" | null
 
@@ -12,6 +13,7 @@ export default function ResumeUploadPage() {
   const [linkedinUrl, setLinkedinUrl] = useState("")
   const [file, setFile] = useState<File | null>(null)
   const [isUploading, setIsUploading] = useState(false)
+  const [error, setError] = useState("")
 
   const isOptionSelected = (option: "linkedin" | "resume") => selectedOption === option
 
@@ -19,31 +21,60 @@ export default function ResumeUploadPage() {
     const selectedFile = e.target.files?.[0]
     if (selectedFile) {
       if (selectedFile.size > 10 * 1024 * 1024) { // 10MB limit
-        alert("File size must not exceed 10MB")
+        setError("File size must not exceed 10MB")
         return
       }
       if (![".pdf", ".doc", ".docx"].some(ext => selectedFile.name.toLowerCase().endsWith(ext))) {
-        alert("File must be in PDF or Word format")
+        setError("File must be in PDF or Word format")
         return
       }
       setFile(selectedFile)
+      setError("")
     }
   }
 
   const handleUpload = async () => {
-    setIsUploading(true)
-    // TODO: Implement file upload logic
-    await new Promise(resolve => setTimeout(resolve, 1000)) // Simulated upload
-    setIsUploading(false)
-    router.push("/dashboard")
+    try {
+      setIsUploading(true)
+      setError("")
+
+      // TODO: 实现文件上传逻辑
+      await new Promise(resolve => setTimeout(resolve, 1000)) // 模拟上传
+
+      // 更新本地存储
+      const user = JSON.parse(localStorage.getItem("user") || "{}")
+      localStorage.setItem("user", JSON.stringify({ ...user, resumeUrl: "dummy-url" })) // 使用实际的 URL
+
+      // 直接跳转到 dashboard
+      router.push("/dashboard")
+    } catch (err) {
+      console.error("Failed to upload resume:", err)
+      setError("Failed to upload your resume. Please try again.")
+    } finally {
+      setIsUploading(false)
+    }
   }
 
   const handleLinkedinSubmit = async () => {
-    setIsUploading(true)
-    // TODO: Implement LinkedIn profile fetch logic
-    await new Promise(resolve => setTimeout(resolve, 1000)) // Simulated processing
-    setIsUploading(false)
-    router.push("/dashboard")
+    try {
+      setIsUploading(true)
+      setError("")
+
+      // TODO: 实现 LinkedIn 个人资料获取逻辑
+      await new Promise(resolve => setTimeout(resolve, 1000)) // 模拟处理
+
+      // 更新本地存储
+      const user = JSON.parse(localStorage.getItem("user") || "{}")
+      localStorage.setItem("user", JSON.stringify({ ...user, resumeUrl: linkedinUrl }))
+
+      // 直接跳转到 dashboard
+      router.push("/dashboard")
+    } catch (err) {
+      console.error("Failed to process LinkedIn URL:", err)
+      setError("Failed to process your LinkedIn profile. Please try again.")
+    } finally {
+      setIsUploading(false)
+    }
   }
 
   return (
@@ -61,12 +92,7 @@ export default function ResumeUploadPage() {
           <span className="font-semibold">Orion</span>
           <span className="inline-block w-2 h-2 bg-green-500 rounded-full" />
         </div>
-        <button
-          onClick={() => router.push("/logout")}
-          className="text-sm text-gray-600 hover:text-gray-900"
-        >
-          Logout
-        </button>
+        <LogoutButton />
       </div>
 
       {/* Main Content */}
@@ -76,6 +102,12 @@ export default function ResumeUploadPage() {
             Seeing some exciting opportunities for you already! Level up your search by either uploading your resume OR entering your Linkedin URL.
           </h1>
         </div>
+
+        {error && (
+          <div className="mb-6 p-3 bg-red-50 text-red-700 rounded-lg text-sm">
+            {error}
+          </div>
+        )}
 
         {selectedOption === "resume" ? (
           <>
@@ -99,106 +131,44 @@ export default function ResumeUploadPage() {
               <button className="text-gray-900 underline hover:opacity-80">
                 Privacy Policy
               </button>
-              .
             </div>
 
-            {/* Upload Area */}
-            <div className="bg-white rounded-2xl p-12 shadow-lg text-center space-y-6">
-              <div className="w-24 h-24 bg-gray-50 rounded-full mx-auto flex items-center justify-center">
-                <svg className="w-12 h-12 text-gray-400" viewBox="0 0 24 24">
-                  <path
-                    fill="currentColor"
-                    d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M12,12.5L9,15.5L10.41,16.91L12,15.33L13.59,16.91L15,15.5L12,12.5Z"
-                  />
-                </svg>
-              </div>
-              <div className="text-lg font-medium">Upload Your Resume</div>
-              <input
-                type="file"
-                accept=".pdf,.doc,.docx"
-                onChange={handleFileChange}
-                className="hidden"
-                id="resumeUpload"
-              />
-              <div className="text-sm text-gray-500">
-                Files should be in PDF or Word format and must not exceed 10MB in size.
-              </div>
-              {file ? (
-                <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
-                  <svg className="w-5 h-5 text-green-500" viewBox="0 0 24 24">
-                    <path
-                      fill="currentColor"
-                      d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z"
-                    />
-                  </svg>
-                  {file.name}
-                </div>
-              ) : (
-                <button
-                  onClick={() => document.getElementById("resumeUpload")?.click()}
-                  className="bg-black text-white px-6 py-2 rounded-full hover:opacity-80 transition-all"
+            {/* File Upload */}
+            <div className="space-y-6">
+              <div>
+                <input
+                  type="file"
+                  accept=".pdf,.doc,.docx"
+                  onChange={handleFileChange}
+                  className="hidden"
+                  id="resume-upload"
+                />
+                <label
+                  htmlFor="resume-upload"
+                  className="block w-full p-4 text-center border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-gray-400 transition-colors"
                 >
-                  Choose File
-                </button>
-              )}
+                  {file ? file.name : "Click to upload or drag and drop"}
+                </label>
+                <p className="mt-2 text-sm text-gray-500">
+                  PDF or Word file, max 10MB
+                </p>
+              </div>
+
+              <button
+                onClick={handleUpload}
+                disabled={!file || isUploading}
+                className="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isUploading ? "Uploading..." : "Upload Resume"}
+              </button>
             </div>
           </>
-        ) : (
-          <div className="space-y-8">
-            {/* LinkedIn Option */}
-            <div 
-              className={`bg-white rounded-2xl p-8 shadow-lg text-center space-y-6 cursor-pointer transition-all ${
-                isOptionSelected("linkedin") ? "ring-2 ring-[#00FF9D]" : "hover:bg-gray-50"
-              }`}
-              onClick={() => setSelectedOption("linkedin")}
-            >
-              <div className="w-16 h-16 mx-auto">
-                <svg viewBox="0 0 24 24" className="w-full h-full">
-                  <path
-                    fill="#0A66C2"
-                    d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M18.5,18.5V13.2A3.26,3.26 0 0,0 15.24,9.94C14.39,9.94 13.4,10.46 12.92,11.24V10.13H10.13V18.5H12.92V13.57C12.92,12.8 13.54,12.17 14.31,12.17A1.4,1.4 0 0,1 15.71,13.57V18.5H18.5M6.88,8.56A1.68,1.68 0 0,0 8.56,6.88C8.56,5.95 7.81,5.19 6.88,5.19A1.69,1.69 0 0,0 5.19,6.88C5.19,7.81 5.95,8.56 6.88,8.56M8.27,18.5V10.13H5.5V18.5H8.27Z"
-                  />
-                </svg>
-              </div>
-              <div className="text-lg font-medium">Enter Linkedin URL</div>
-              {isOptionSelected("linkedin") && (
-                <input
-                  type="text"
-                  value={linkedinUrl}
-                  onChange={(e) => setLinkedinUrl(e.target.value)}
-                  placeholder="https://www.linkedin.com/in/your-profile"
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#00FF9D] focus:border-transparent outline-none"
-                  autoFocus
-                />
-              )}
-            </div>
-
-            {/* Resume Option */}
-            <div 
-              className={`bg-white rounded-2xl p-8 shadow-lg text-center space-y-6 cursor-pointer transition-all ${
-                isOptionSelected("resume") ? "ring-2 ring-[#00FF9D]" : "hover:bg-gray-50"
-              }`}
-              onClick={() => setSelectedOption("resume")}
-            >
-              <div className="w-16 h-16 mx-auto">
-                <svg viewBox="0 0 24 24" className="w-full h-full text-gray-600">
-                  <path
-                    fill="currentColor"
-                    d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M12,12.5L9,15.5L10.41,16.91L12,15.33L13.59,16.91L15,15.5L12,12.5Z"
-                  />
-                </svg>
-              </div>
-              <div className="text-lg font-medium">Upload Resume</div>
-            </div>
-          </div>
-        )}
-
-        {/* Action Button */}
-        <div className="flex justify-between items-center mt-8">
-          {selectedOption === "resume" && (
+        ) : selectedOption === "linkedin" ? (
+          <>
+            {/* Back Button */}
             <button
               onClick={() => setSelectedOption(null)}
-              className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+              className="mb-8 flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
@@ -208,25 +178,71 @@ export default function ResumeUploadPage() {
               </svg>
               Back
             </button>
-          )}
-          {selectedOption === "resume" ? (
+
+            {/* LinkedIn URL Input */}
+            <div className="space-y-6">
+              <div>
+                <label htmlFor="linkedin-url" className="block text-sm font-medium text-gray-700 mb-1">
+                  LinkedIn Profile URL
+                </label>
+                <input
+                  type="url"
+                  id="linkedin-url"
+                  value={linkedinUrl}
+                  onChange={(e) => setLinkedinUrl(e.target.value)}
+                  placeholder="https://www.linkedin.com/in/your-profile"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black/5"
+                />
+              </div>
+
+              <button
+                onClick={handleLinkedinSubmit}
+                disabled={!linkedinUrl || isUploading}
+                className="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isUploading ? "Processing..." : "Submit"}
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Resume Upload Option */}
             <button
-              onClick={handleUpload}
-              disabled={!file || isUploading}
-              className="bg-black text-white px-8 py-2 rounded-full hover:opacity-80 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              onClick={() => setSelectedOption("resume")}
+              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all text-left space-y-4"
             >
-              {isUploading ? "Uploading..." : "Start Matching"}
+              <div className="flex items-center gap-3">
+                <div className="p-3 bg-[#00FF9D]/10 rounded-xl">
+                  <svg className="w-6 h-6 text-[#00FF9D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                  </svg>
+                </div>
+                <h2 className="text-lg font-medium">Upload Resume</h2>
+              </div>
+              <p className="text-gray-600">
+                Upload your resume in PDF or Word format
+              </p>
             </button>
-          ) : selectedOption === "linkedin" ? (
+
+            {/* LinkedIn Option */}
             <button
-              onClick={handleLinkedinSubmit}
-              disabled={!linkedinUrl || isUploading}
-              className="bg-black text-white px-8 py-2 rounded-full hover:opacity-80 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              onClick={() => setSelectedOption("linkedin")}
+              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all text-left space-y-4"
             >
-              {isUploading ? "Processing..." : "Start Matching"}
+              <div className="flex items-center gap-3">
+                <div className="p-3 bg-[#00FF9D]/10 rounded-xl">
+                  <svg className="w-6 h-6 text-[#00FF9D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                  </svg>
+                </div>
+                <h2 className="text-lg font-medium">Enter LinkedIn URL</h2>
+              </div>
+              <p className="text-gray-600">
+                Share your LinkedIn profile URL
+              </p>
             </button>
-          ) : null}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   )
