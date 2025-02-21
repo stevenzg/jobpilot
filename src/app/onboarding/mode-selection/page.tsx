@@ -25,8 +25,8 @@ export default function ModeSelectionPage() {
       const user = JSON.parse(localStorage.getItem("user") || "{}")
       localStorage.setItem("user", JSON.stringify({ ...user, searchMode: mode }))
 
-      // 直接跳转到 jobs/recommend 页面
-      router.push("/onboarding/jobs/recommend")
+      // 直接跳转到 resume-upload 页面
+      router.push("/onboarding/resume-upload")
     } catch (err) {
       console.error("Failed to update search mode:", err)
       setError("Failed to save your preference. Please try again.")

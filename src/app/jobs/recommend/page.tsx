@@ -1,12 +1,9 @@
 "use client"
 
-import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { LogoutButton } from "@/components/logout-button"
 
 export default function RecommendJobsPage() {
-  const router = useRouter()
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#E0FFFF] to-white">
       {/* Header */}
