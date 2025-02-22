@@ -23,6 +23,17 @@ export interface LoginResponse {
   locations: string[] | null;
 }
 
+// Token management functions
+const setToken = (token: string) => {
+  localStorage.setItem('token', token);
+  document.cookie = `token=${token}; path=/`;
+};
+
+const clearToken = () => {
+  localStorage.removeItem('token');
+  document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
+};
+
 export const authService = {
   sendCode: async (email: string) => {
     const response = await axios.post(`${API_URL}/api/auth/send-code`, { email });
@@ -31,6 +42,8 @@ export const authService = {
 
   verify: async (email: string, code: string) => {
     const response = await axios.post<LoginResponse>(`${API_URL}/api/auth/verify`, { email, code });
+    // Set token in both localStorage and cookie
+    setToken(response.data.token);
     return response.data;
   },
 
@@ -71,8 +84,7 @@ export const authService = {
   },
 
   logout: () => {
-    // 清除本地存储的用户信息
-    localStorage.removeItem('token');
+    clearToken();
     localStorage.removeItem('user');
   }
 };

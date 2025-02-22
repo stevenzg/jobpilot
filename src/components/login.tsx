@@ -55,8 +55,7 @@ export function Login() {
       setError("");
       const response = await authService.verify(email, verificationCode);
       
-      // 存储 token 和用户基本信息
-      localStorage.setItem("token", response.token);
+      // 只存储用户基本信息
       localStorage.setItem("user", JSON.stringify({
         id: response.id,
         email: response.email,
