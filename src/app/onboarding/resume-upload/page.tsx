@@ -53,7 +53,7 @@ export default function ResumeUploadPage() {
       }
 
       // 上传文件
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/file/resume`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/file/upload/resume`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`
