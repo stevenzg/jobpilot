@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { Resume } from "@/types/resume";
 import { format } from "date-fns";
 import { toast } from "sonner";
+import { resumeService } from "@/app/services/resume";
 
 export default function ResumePage() {
   const [resumes, setResumes] = useState<Resume[]>([]);
@@ -16,17 +17,7 @@ export default function ResumePage() {
   useEffect(() => {
     const fetchResumes = async () => {
       try {
-        const response = await fetch("/api/Resume", {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        
-        if (!response.ok) {
-          throw new Error("Failed to fetch resumes");
-        }
-
-        const data = await response.json();
+        const data = await resumeService.getResumes();
         setResumes(data);
       } catch (error) {
         toast.error("Failed to load resumes. Please try again later.");

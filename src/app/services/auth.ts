@@ -1,6 +1,4 @@
-import axios from 'axios';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+import request from './request';
 
 export interface SendCodeRequest {
   email: string;
@@ -36,15 +34,14 @@ const clearToken = () => {
 
 export const authService = {
   sendCode: async (email: string) => {
-    const response = await axios.post(`${API_URL}/api/auth/send-code`, { email });
-    return response.data;
+    return request.post(`/api/auth/send-code`, { email });
   },
 
   verify: async (email: string, code: string) => {
-    const response = await axios.post<LoginResponse>(`${API_URL}/api/auth/verify`, { email, code });
+    const response = await request.post<LoginResponse>('/api/auth/verify', { email, code });
     // Set token in both localStorage and cookie
-    setToken(response.data.token);
-    return response.data;
+    setToken(response.token);
+    return response;
   },
 
   updateSearchMode: async (searchMode: string) => {
@@ -53,16 +50,12 @@ export const authService = {
       throw new Error('No token found');
     }
 
-    await axios.post(
-      `${API_URL}/api/auth/search-mode`,
-      { searchMode },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
+    return request.put('/api/auth/search-mode', { searchMode }, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
       }
-    );
+    });
   },
 
   updateResumeUrl: async (resumeUrl: string) => {
@@ -71,19 +64,21 @@ export const authService = {
       throw new Error('No token found');
     }
 
-    await axios.post(
-      `${API_URL}/api/auth/resume-url`,
-      { resumeUrl },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
+    return request.put('/api/auth/resume-url', { resumeUrl }, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
       }
-    );
+    });
   },
 
-  logout: () => {
+  logout: async () => {
+    await request.post('/api/auth/logout', {}, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      }
+    });
     clearToken();
     localStorage.removeItem('user');
   }
