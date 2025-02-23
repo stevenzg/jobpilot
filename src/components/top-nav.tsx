@@ -1,8 +1,9 @@
-"use client";
+"use client"
 
-import { BellIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { BellIcon } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { usePathname } from "next/navigation"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,20 +11,30 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu"
 
 export function TopNav() {
+  const pathname = usePathname()
+
+  const getPageTitle = () => {
+    if (pathname === "/jobs/recommend") return "Jobs"
+    if (pathname === "/jobs/resume") return "Resume"
+    if (pathname === "/profile") return "Profile"
+    if (pathname === "/settings") return "Settings"
+    return "Home"
+  }
+
   return (
     <div className="h-16 border-b bg-white px-4 flex items-center justify-between">
       <div className="flex-1">
-        <h1 className="text-2xl font-semibold">Jobs</h1>
+        <h1 className="text-2xl font-semibold">{getPageTitle()}</h1>
       </div>
-      
+
       <div className="flex items-center space-x-4">
         <Button variant="ghost" size="icon">
           <BellIcon className="h-5 w-5" />
         </Button>
-        
+
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative h-8 w-8 rounded-full">
@@ -51,5 +62,5 @@ export function TopNav() {
         </DropdownMenu>
       </div>
     </div>
-  );
+  )
 }
