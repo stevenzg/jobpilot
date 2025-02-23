@@ -19,7 +19,7 @@ export default function ResumePage() {
       try {
         const data = await resumeService.getResumes();
         setResumes(data);
-      } catch (error) {
+      } catch (_error) {
         toast.error("Failed to load resumes. Please try again later.");
       } finally {
         setLoading(false);
@@ -52,7 +52,7 @@ export default function ResumePage() {
         </div>
       ) : resumes.length === 0 ? (
         <Card className="p-8 text-center">
-          <p className="text-muted-foreground">No resumes found. Click "Add Resume" to create one.</p>
+          <p className="text-muted-foreground">No resumes found. Click &quot;Add Resume&quot; to create one.</p>
         </Card>
       ) : (
         <div className="space-y-4">

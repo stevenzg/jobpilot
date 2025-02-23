@@ -11,6 +11,21 @@ const request = axios.create({
   },
 });
 
+// Request interceptor
+request.interceptors.request.use(
+  (config) => {
+    // 从 cookie 或 localStorage 获取 token
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 // Response interceptor
 request.interceptors.response.use(
   (response: AxiosResponse) => response.data,

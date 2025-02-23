@@ -3,11 +3,11 @@ import request from "./request";
 
 export const resumeService = {
   async getResumes(): Promise<Resume[]> {
-    return request.get("/Resume");
+    return request.get("/api/resume");
   },
 
   async getResume(id: number): Promise<Resume> {
-    return request.get(`/Resume/${id}`);
+    return request.get(`/api/resume/${id}`);
   },
 
   async createResume(file: File): Promise<Resume> {
