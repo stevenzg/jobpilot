@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { MapPinIcon, BuildingIcon, BriefcaseIcon } from "lucide-react"
+import Image from "next/image"
 
 // Mock data - replace with real API call later
 const recommendedJobs = [
@@ -58,7 +59,7 @@ export default function RecommendJobsPage() {
           <Card key={job.id} className="p-6">
             <div className="flex items-start gap-4">
               <div className="h-12 w-12 rounded-lg bg-gray-100 flex items-center justify-center">
-                <img src={job.logo} alt={job.company} className="h-8 w-8" />
+                <Image src={job.logo} alt={job.company} width={32} height={32} />
               </div>
               
               <div className="flex-1">
