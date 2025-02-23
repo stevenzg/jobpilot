@@ -3,7 +3,7 @@
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { MapPinIcon, BuildingIcon, DollarSignIcon, BriefcaseIcon } from "lucide-react"
+import { MapPinIcon, BuildingIcon, BriefcaseIcon } from "lucide-react"
 
 // Mock data - replace with real API call later
 const recommendedJobs = [

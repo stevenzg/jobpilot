@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
@@ -27,7 +28,7 @@ export function Sidebar() {
     <div className="flex flex-col w-64 bg-white border-r">
       <div className="flex h-16 items-center px-4">
         <Link href="/" className="flex items-center space-x-2">
-          <img src="/jobpilot.jpg" alt="Jobpilot" className="h-8 w-8" />
+          <Image src="/jobpilot.jpg" alt="Jobpilot" width={32} height={32} />
           <span className="font-semibold text-xl">Jobpilot</span>
         </Link>
       </div>

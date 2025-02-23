@@ -3,8 +3,6 @@ import type { NextRequest } from 'next/server'
 
 // 需要认证的路由
 const protectedRoutes = ['/jobs', '/onboarding']
-// 不需要认证的路由
-const publicRoutes = ['/', '/login']
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get('token')?.value
