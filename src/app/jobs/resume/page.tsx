@@ -19,7 +19,7 @@ export default function ResumePage() {
       try {
         const data = await resumeService.getResumes();
         setResumes(data);
-      } catch (_error) {
+      } catch {
         toast.error("Failed to load resumes. Please try again later.");
       } finally {
         setLoading(false);
