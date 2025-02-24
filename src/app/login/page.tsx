@@ -49,7 +49,7 @@ export default function LoginPage() {
     try {
       setLoading(true);
       setError("");
-      const { data: response }: { data: AuthResponse } = await authService.verify(email, code);
+      const response: AuthResponse = await authService.verify(email, code);
       
       // 存储 token 和用户信息
       localStorage.setItem("token", response.token);

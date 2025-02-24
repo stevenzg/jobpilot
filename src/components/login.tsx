@@ -23,7 +23,7 @@ export function Login() {
 
   const handleSendCode = async (e?: React.FormEvent) => {
     e?.preventDefault()
-    
+
     if (!email) {
       setError("Please enter your email address")
       return
@@ -32,7 +32,7 @@ export function Login() {
     try {
       setIsLoading(true)
       setError("")
-      
+
       await authService.sendCode(email)
       setIsCodeSent(true)
       setCountdown(60) // Start 60 seconds countdown
@@ -45,47 +45,47 @@ export function Login() {
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!isCodeSent) {
-      handleSendCode();
-      return;
+      handleSendCode()
+      return
     }
 
     try {
-      setIsLoading(true);
-      setError("");
-      const { data: response }: { data: AuthResponse } = await authService.verify(email, verificationCode);
-      
+      setIsLoading(true)
+      setError("")
+      const response: AuthResponse = await authService.verify(email, verificationCode)
+
       // 只存储用户基本信息
       localStorage.setItem("user", JSON.stringify({
         id: response.id,
         email: response.email,
         name: response.name
-      }));
+      }))
 
       // 根据缺失的字段决定跳转方向
       if (!response.searchMode) {
         // 如果没有 searchMode，跳转到模式选择页面
-        router.push("/onboarding/mode-selection");
+        router.push("/onboarding/mode-selection")
       } else if (!response.resumeUrl) {
         // 如果没有上传简历，跳转到简历上传页面
-        router.push("/onboarding/resume-upload");
+        router.push("/onboarding/resume-upload")
       } else {
         // 如果基本信息都完整，跳转到 dashboard
-        router.push("/dashboard");
+        router.push("/dashboard")
       }
     } catch {
-      setError("Invalid verification code. Please try again.");
+      setError("Invalid verification code. Please try again.")
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
     <div className="w-full max-w-md mx-auto p-6">
       <h2 className="text-2xl font-bold text-center mb-2">Sign In with Email</h2>
       <p className="text-gray-600 text-center mb-6">We&apos;ll send you a verification code</p>
-      
+
       {error && (
         <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-600 rounded-md text-sm">
           {error}
@@ -107,7 +107,7 @@ export function Login() {
             disabled={isCodeSent}
           />
         </div>
-        
+
         {isCodeSent && (
           <div>
             <label htmlFor="code" className="block text-sm font-medium text-gray-700 mb-1">
