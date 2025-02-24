@@ -64,7 +64,7 @@ export default function ResumePage() {
                     <span className="font-medium">Resume #{resume.id}</span>
                   </div>
                   <p className="text-sm text-muted-foreground">
-                    Skills: {resume.skills.join(", ")}
+                    Skills: {(resume.skills || []).join(", ")}
                   </p>
                 </div>
                 <div className="flex items-center gap-4 text-sm text-muted-foreground">
