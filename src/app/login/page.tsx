@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { authService } from "../services/auth";
+import { AuthResponse } from "@/types/auth";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -48,7 +49,7 @@ export default function LoginPage() {
     try {
       setLoading(true);
       setError("");
-      const response = await authService.verify(email, code);
+      const { data: response }: { data: AuthResponse } = await authService.verify(email, code);
       
       // 存储 token 和用户信息
       localStorage.setItem("token", response.token);

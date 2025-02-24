@@ -1,8 +1,9 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { authService } from "@/app/services/auth"
 import { useRouter } from "next/navigation"
+import { authService } from "@/app/services/auth"
+import { AuthResponse } from "@/types/auth"
 
 export function Login() {
   const router = useRouter()
@@ -53,7 +54,7 @@ export function Login() {
     try {
       setIsLoading(true);
       setError("");
-      const response = await authService.verify(email, verificationCode);
+      const { data: response }: { data: AuthResponse } = await authService.verify(email, verificationCode);
       
       // 只存储用户基本信息
       localStorage.setItem("user", JSON.stringify({

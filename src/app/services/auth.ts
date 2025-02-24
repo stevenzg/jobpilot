@@ -40,8 +40,8 @@ export const authService = {
   verify: async (email: string, code: string) => {
     const response = await request.post<LoginResponse>('/api/auth/verify', { email, code });
     // Set token in both localStorage and cookie
-    setToken(response.token);
-    return response;
+    setToken(response.data.token);
+    return response.data;
   },
 
   updateSearchMode: async (searchMode: string) => {
