@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button"
 import { PlusCircle, MoreHorizontal } from "lucide-react"
-import Link from "next/link"
 import { useEffect, useState } from "react"
 import { Resume } from "@/types/resume"
 import { formatDistanceToNow } from "date-fns"

@@ -18,6 +18,7 @@ export const resumeService = {
       headers: {
         "Content-Type": "multipart/form-data",
       },
+      timeout: 60000, // 增加到60秒
     });
   },
 
