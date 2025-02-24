@@ -14,14 +14,18 @@ export const resumeService = {
     const formData = new FormData();
     formData.append("file", file);
     
-    return request.post("/Resume", formData, {
+    return request.post("/api/file/upload/resume", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
   },
 
+  async updateResume(id: number, data: Partial<Resume>): Promise<Resume> {
+    return request.patch(`/api/resume/${id}`, data);
+  },
+
   async deleteResume(id: number): Promise<void> {
-    return request.delete(`/Resume/${id}`);
+    return request.delete(`/api/resume/${id}`);
   },
 };

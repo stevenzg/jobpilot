@@ -8,10 +8,12 @@ import { Resume } from "@/types/resume"
 import { formatDistanceToNow } from "date-fns"
 import { toast } from "sonner"
 import { resumeService } from "@/app/services/resume"
+import { ResumeUploadDialog } from "@/components/resume-upload-dialog"
 
 export default function ResumePage() {
   const [resumes, setResumes] = useState<Resume[]>([])
   const [loading, setLoading] = useState(true)
+  const [uploadDialogOpen, setUploadDialogOpen] = useState(false)
 
   useEffect(() => {
     const fetchResumes = async () => {
@@ -28,6 +30,10 @@ export default function ResumePage() {
     fetchResumes()
   }, [])
 
+  const handleUploadSuccess = (resume: Resume) => {
+    setResumes((prev) => [...prev, resume])
+  }
+
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
@@ -37,11 +43,9 @@ export default function ResumePage() {
             You have {resumes.length} resume{resumes.length !== 1 ? "s" : ""} saved out of 5 available slots.
           </p>
         </div>
-        <Button asChild>
-          <Link href="/jobs/resume/new">
-            <PlusCircle className="mr-2 h-4 w-4" />
-            Add Resume
-          </Link>
+        <Button onClick={() => setUploadDialogOpen(true)}>
+          <PlusCircle className="mr-2 h-4 w-4" />
+          Add Resume
         </Button>
       </div>
 
@@ -71,9 +75,6 @@ export default function ResumePage() {
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="font-medium">{resume.resumeName}</span>
-                        {/* {resume?.analysisComplete && (
-                          <span className="px-2 py-0.5 text-xs rounded-full bg-blue-100 text-blue-700">Analysis Complete</span>
-                        )} */}
                       </div>
                     </div>
                   </td>
@@ -97,6 +98,12 @@ export default function ResumePage() {
           </table>
         </div>
       )}
+
+      <ResumeUploadDialog
+        open={uploadDialogOpen}
+        onOpenChange={setUploadDialogOpen}
+        onSuccess={handleUploadSuccess}
+      />
     </div>
   )
 }
