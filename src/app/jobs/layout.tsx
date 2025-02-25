@@ -11,8 +11,8 @@ export default function JobsLayout({
       <Sidebar />
       <div className="flex-1 flex flex-col">
         <TopNav />
-        <main className="flex-1 overflow-y-auto p-4">
-          <div className="px-4 py-2 bg-gray-50 rounded-tl-2xl rounded-tr-2xl rounded-bl-2xl">
+        <main className="mx-4 flex-1 overflow-y-auto bg-gray-50 rounded-tl-2xl rounded-tr-2xl">
+          <div className="p-4">
             {children}
           </div>
         </main>
