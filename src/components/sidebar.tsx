@@ -23,7 +23,7 @@ export function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <div className="flex flex-col w-64 bg-white border-r">
+    <div className="flex flex-col w-64 bg-white">
       <div className="flex h-16 items-center px-4">
         <Link href="/" className="flex items-center space-x-2">
           <Image src="/jobpilot.jpg" alt="Jobpilot" width={32} height={32} />

@@ -25,7 +25,7 @@ export function TopNav() {
   }
 
   return (
-    <div className="h-16 border-b bg-white px-4 flex items-center justify-between">
+    <div className="h-16 bg-white px-4 flex items-center justify-between">
       <div className="flex-1">
         <h1 className="text-2xl font-semibold">{getPageTitle()}</h1>
       </div>

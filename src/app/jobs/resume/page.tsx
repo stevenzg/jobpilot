@@ -37,7 +37,6 @@ export default function ResumePage() {
     <div className="space-y-4">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-bold">Resume</h1>
           <p className="text-sm text-muted-foreground">
             You have {resumes.length} resume{resumes.length !== 1 ? "s" : ""} saved out of 5 available slots.
           </p>
